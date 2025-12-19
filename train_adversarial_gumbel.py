@@ -28,14 +28,11 @@ from gen_embedding_matrix import learn_k_means_from_input_embedding, learn_k_mea
 
 # Util Functions
 def load_model_from_config(config, ckpt, device="cpu", verbose=False):
-    """Loads a model from config and a ckpt
-    if config is a path will use omegaconf to load
-    """
+    """Loads a model from config and a ckpt"""
     if isinstance(config, (str, Path)):
         config = OmegaConf.load(config)
 
     pl_sd = torch.load(ckpt, map_location="cpu")
-    global_step = pl_sd["global_step"]
     sd = pl_sd["state_dict"]
     model = instantiate_from_config(config.model)
     m, u = model.load_state_dict(sd, strict=False)
@@ -74,43 +71,6 @@ def sample_model(model, sampler, c, h, w, ddim_steps, scale, ddim_eta, start_cod
     return samples_ddim
 
 def train(prompt, train_method, start_guidance, negative_guidance, iterations, lr, config_path, ckpt_path, diffusers_config_path, devices, seperator=None, image_size=512, ddim_steps=50, args=None):
-    '''
-    Function to train diffusion models to erase concepts from model weights
-
-    Parameters
-    ----------
-    prompt : str
-        The concept to erase from diffusion model (Eg: "Van Gogh").
-    train_method : str
-        The parameters to train for erasure (noxattn, xattan).
-    start_guidance : float
-        Guidance to generate images for training.
-    negative_guidance : float
-        Guidance to erase the concepts from diffusion model.
-    iterations : int
-        Number of iterations to train.
-    lr : float
-        learning rate for fine tuning.
-    config_path : str
-        config path for compvis diffusion format.
-    ckpt_path : str
-        checkpoint path for pre-trained compvis diffusion weights.
-    diffusers_config_path : str
-        Config path for diffusers unet in json format.
-    devices : str
-        2 devices used to load the models (Eg: '0,1' will load in cuda:0 and cuda:1).
-    seperator : str, optional
-        If the prompt has commas can use this to seperate the prompt for individual simulataneous erasures. The default is None.
-    image_size : int, optional
-        Image size for generated images. The default is 512.
-    ddim_steps : int, optional
-        Number of diffusion time steps. The default is 50.
-
-    Returns
-    -------
-    None
-
-    '''
     # PROMPT CLEANING
     word_print = prompt.replace(' ','')
 
@@ -130,92 +90,65 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
     preserved_words.append('')
 
     ddim_eta = 0
-    # MODEL TRAINING SETUP
+    
+    # --- LOAD MODELS ---
+    print(f"Loading Student Model to {devices[0]}")
+    model = load_model_from_config(config_path, ckpt_path, devices[0])
+    sampler = DDIMSampler(model)
 
-    model_orig, sampler_orig, model, sampler = get_models(config_path, ckpt_path, devices)
+    print("Loading Teacher Model to CPU")
+    model_orig = load_model_from_config(config_path, ckpt_path, "cpu")
+    model_orig.half() 
+    sampler_orig = DDIMSampler(model_orig)
 
-    # choose parameters to train based on train_method
+    # Choose parameters to train
     parameters = []
     for name, param in model.model.diffusion_model.named_parameters():
-        # train all layers except x-attns and time_embed layers
         if train_method == 'noxattn':
             if name.startswith('out.') or 'attn2' in name or 'time_embed' in name:
                 pass
             else:
-                print(name)
                 parameters.append(param)
-        # train only self attention layers
         if train_method == 'selfattn':
             if 'attn1' in name:
-                print(name)
                 parameters.append(param)
-        # train only x attention layers
         if train_method == 'xattn':
             if 'attn2' in name:
-                print(name)
                 parameters.append(param)
-        # train only qkv layers in x attention layers
         if train_method == 'xattn_matching':
             if 'attn2' in name and ('to_q' in name or 'to_k' in name or 'to_v' in name):
-                print(name)
                 parameters.append(param)
-                # return_nodes[name] = name
-        # train all layers
         if train_method == 'full':
-            print(name)
             parameters.append(param)
-        # train all layers except time embed layers
         if train_method == 'notime':
             if not (name.startswith('out.') or 'time_embed' in name):
-                print(name)
                 parameters.append(param)
         if train_method == 'xlayer':
             if 'attn2' in name:
                 if 'output_blocks.6.' in name or 'output_blocks.8.' in name:
-                    print(name)
                     parameters.append(param)
         if train_method == 'selflayer':
             if 'attn1' in name:
                 if 'input_blocks.4.' in name or 'input_blocks.7.' in name:
-                    print(name)
                     parameters.append(param)
     
-    # load clip model
-    # clip_model, clip_preprocess = clip.load("ViT-B/32", devices[0])
-
-    # import pdb; pdb.set_trace()
-    def decode_and_extract_image(model_orig, z):
-        x = model_orig.decode_first_stage(z.to(model_orig.device).half())
-        x = torch.clamp((x + 1.0)/2.0, min=0.0, max=1.0)
-        x = rearrange(x, 'b c h w -> b (c h) w')
-        image = clip_preprocess(Image.fromarray((x[0].cpu().numpy()*255).astype(np.uint8)))
-        with torch.no_grad():
-            image_features = clip_model.encode_image(image.unsqueeze(0).to(devices[0]))
-        return image_features
-    
     def decode_and_save_image(model_orig, z, path):
-        # CHANGE: Cast z to half precision because model_orig is half
-        x = model_orig.decode_first_stage(z.to(model_orig.device).half())
+        model_orig.to(devices[0])
+        z = z.to(devices[0])
+        if next(model_orig.parameters()).dtype == torch.float16:
+            z = z.half()
+        x = model_orig.decode_first_stage(z)
         x = torch.clamp((x + 1.0)/2.0, min=0.0, max=1.0)
         x = rearrange(x, 'b c h w -> b h w c')
-        image = Image.fromarray((x[0].float().cpu().numpy()*255).astype(np.uint8))
+        image = Image.fromarray((x[0].cpu().float().numpy()*255).astype(np.uint8))
         plt.imshow(image)
         plt.xticks([])
         plt.yticks([])
         plt.savefig(path)
         plt.close()
+        model_orig.to("cpu")
 
-    def extract_text(text):
-        assert isinstance(text, str)
-        text = [text]
-        text = clip.tokenize(text).to(devices[0])
-        with torch.no_grad():
-            text_features = clip_model.encode_text(text)
-        return text_features
-
-    # set model to train
     model.train()
-    # create a lambda function for cleaner use of sampling code (only denoising till time step t)
     quick_sample_till_t = lambda cond, s, code, t: sample_model(model, sampler,
                                                                  cond, image_size, image_size, ddim_steps, s, ddim_eta,
                                                                  start_code=code, till_T=t, verbose=False)
@@ -224,6 +157,8 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
     opt = torch.optim.Adam(parameters, lr=lr)
     criteria = torch.nn.MSELoss()
     history_dict = {}
+    
+    scaler = torch.cuda.amp.GradScaler()
 
     name = f'compvis-adversarial-gumbel-word_{word_print}-method_{train_method}-sg_{start_guidance}-ng_{negative_guidance}-iter_{iterations}-lr_{lr}-info_{args.info}'
     models_path = args.models_path
@@ -231,12 +166,8 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
     os.makedirs(f'invest_folder/{name}', exist_ok=True)
     os.makedirs(f'{models_path}/{name}', exist_ok=True)
 
-
     # TRAINING CODE
     pbar = tqdm(range(args.pgd_num_steps*iterations))
-
-    # Create a dictionary to store the prompt 
-    # each word has a prompt with size prompt_size
 
     def create_prompt(word, retrieve=True):
         if retrieve:
@@ -245,27 +176,9 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
             prompt = f'{word}'
             emb = model.get_learned_conditioning([prompt])
             init = emb
-            # init = emb + torch.randn_like(emb) * torch.norm(emb) * 0.001
             return init
 
     fixed_start_code = torch.randn((1, 4, 64, 64)).to(devices[0])    
-
-    """
-    Algorithm description: 
-    Given a pre-defined set of concepts to preserve, use the adversarial prompt learning to learn only one concept from the set that maximizes a loss function. 
-    The index of the concept is represented by a index one-hot vector. 
-    Step by step: 
-    - Step 0: get text embeddings of these concepts from the set. Concat the embeddings to form a matrix. 
-    - Step 1: Init one-hot vector with the first concept (or random concept from the set)
-    
-    """
-
-    # create embedding matrix for all tokens in the dictionary
-    # if not os.path.exists('models/embedding_matrix_0_5000_array.pt'):
-    #     save_embedding_matrix(model, model_name='SD-v1-4', save_mode='array', vocab='CLIP')
-
-    # if not os.path.exists('models/embedding_matrix_0_5000_dict.pt'):
-    #     save_embedding_matrix(model, model_name='SD-v1-4', save_mode='dict', vocab='CLIP')
     
     if not os.path.exists('models/embedding_matrix_dict_EN3K.pt'):
         save_embedding_matrix(model, model_name='SD-v1-4', save_mode='dict', vocab='EN3K')
@@ -273,12 +186,6 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
     if not os.path.exists('models/embedding_matrix_array_EN3K.pt'):
         save_embedding_matrix(model, model_name='SD-v1-4', save_mode='array', vocab='EN3K')
 
-
-    # initialize the preserved set for each erased concept
-    # tokenizer_vocab = model.cond_stage_model.tokenizer.get_vocab()
-    # tokens_embedding = list(tokenizer_vocab.keys())
-    
-    # shorten the list of tokens_embedding to 5000, using the similarities between tokens
     tokens_embedding = []
     all_sim_dict = dict()
     for word in erased_words:
@@ -294,14 +201,8 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
         temp = learn_k_means_from_input_embedding(sim_dict=all_sim_dict[word], num_centers=args.gumbel_num_centers)
         preserved_dict[word] = temp
 
-    # if args.gumbel_num_centers > 0:
-    #     assert len(preserved_set) == args.gumbel_num_centers, 'Number of preserved set should be equal to the number of centers'
-
-    # print('preserved_set:', preserved_set)
     history_dict = save_to_dict(preserved_dict, f'preserved_set_0', history_dict)
 
-
-    # create a matrix of embeddings for the preserved set
     print('Creating preserved matrix')
     one_hot_dict = dict()
     preserved_matrix_dict = dict()
@@ -312,21 +213,17 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
                 preserved_matrix = create_prompt(word)
             else:
                 preserved_matrix = torch.cat((preserved_matrix, create_prompt(word)), dim=0)
-            print(i, word, preserved_matrix.shape)    
-        # preserved_matrix = torch.cat([create_prompt(word) for word in preserved_set], dim=0) # [n, 77, 768]
-        preserved_matrix = preserved_matrix.flatten(start_dim=1) # [n, 77*768]
-        one_hot = torch.zeros((1, preserved_matrix.shape[0]), device=devices[0], dtype=preserved_matrix.dtype) # [1, n]
+        
+        preserved_matrix = preserved_matrix.flatten(start_dim=1) 
+        one_hot = torch.zeros((1, preserved_matrix.shape[0]), device=devices[0], dtype=preserved_matrix.dtype) 
         one_hot = one_hot + 1 / preserved_matrix.shape[0]
         one_hot = Variable(one_hot, requires_grad=True)
-        print(one_hot.shape, preserved_matrix.shape)
-        print(one_hot)
         one_hot_dict[erase_word] = one_hot
         preserved_matrix_dict[erase_word] = preserved_matrix
     
-    print('one_hot_dict:', one_hot_dict)
+    print('one_hot_dict initialized')
     history_dict = save_to_dict(one_hot_dict, f'one_hot_dict_0', history_dict)
 
-    # optimizer for all one-hot vectors
     opt_one_hot = torch.optim.Adam([one_hot for one_hot in one_hot_dict.values()], lr=args.gumbel_lr)
 
     def gumbel_softmax(logits, temperature=args.gumbel_temp, hard=args.gumbel_hard, eps=1e-10):
@@ -340,31 +237,24 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
             y = (y_hard - y).detach() + y
         return y
 
-    # print('gumbel_softmax:', gumbel_softmax(one_hot))
 
     for i in pbar:
         word = random.sample(erased_words,1)[0]
 
-        opt.zero_grad()
-        model.zero_grad()
-        model_orig.zero_grad()
-        # one_hot.requires_grad_()
-        opt_one_hot.zero_grad()
+        opt.zero_grad(set_to_none=True)
+        model.zero_grad(set_to_none=True)
+        model_orig.zero_grad(set_to_none=True)
+        opt_one_hot.zero_grad(set_to_none=True)
 
-        # 
         prompt_0 = ''
         prompt_n = f'{word}'
 
-        # get text embeddings for unconditional and conditional prompts
         emb_0 = model.get_learned_conditioning([prompt_0])
         emb_n = model.get_learned_conditioning([prompt_n])
 
-        # get the emb_r 
         emb_r = torch.reshape(torch.matmul(gumbel_softmax(one_hot_dict[word]), preserved_matrix_dict[word]).unsqueeze(0), (1, 77, 768))
-        assert emb_r.shape == emb_n.shape
-
+        
         t_enc = torch.randint(ddim_steps, (1,), device=devices[0])
-        # time step from 1000 to 0 (0 being good)
         og_num = round((int(t_enc)/ddim_steps)*1000)
         og_num_lim = round((int(t_enc+1)/ddim_steps)*1000)
 
@@ -372,92 +262,104 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
 
         start_code = torch.randn((1, 4, 64, 64)).to(devices[0])
 
+        # === 1. Generate Images with Student Model ===
         with torch.no_grad():
-            # generate an image with the concept
-            z = quick_sample_till_t(emb_n.to(devices[0]), start_guidance, start_code, int(t_enc))
-            z_r = quick_sample_till_t(emb_r.to(devices[0]), start_guidance, start_code, int(t_enc))
+            with torch.cuda.amp.autocast():
+                z = quick_sample_till_t(emb_n.to(devices[0]), start_guidance, start_code, int(t_enc))
+                z_r = quick_sample_till_t(emb_r.to(devices[0]), start_guidance, start_code, int(t_enc))
 
-            # get conditional and unconditional scores from frozen model at time step t and image z
-            # CHANGE: Cast inputs to half precision for model_orig
-            e_0_org = model_orig.apply_model(z.to(devices[1]).half(), t_enc_ddpm.to(devices[1]), emb_0.to(devices[1]).half())
-            e_n_org = model_orig.apply_model(z.to(devices[1]).half(), t_enc_ddpm.to(devices[1]), emb_n.to(devices[1]).half())
-            e_r_org = model_orig.apply_model(z_r.to(devices[1]).half(), t_enc_ddpm.to(devices[1]), emb_r.to(devices[1]).half())
+        # === 2. Compute Teacher Targets & Offload to CPU ===
+        model_orig.to(devices[0])
+        with torch.no_grad():
+            z_half = z.to(devices[0]).half()
+            z_r_half = z_r.to(devices[0]).half()
+            t_enc_ddpm_dev = t_enc_ddpm.to(devices[0])
+            emb_0_half = emb_0.to(devices[0]).half()
+            emb_n_half = emb_n.to(devices[0]).half()
+            emb_r_half = emb_r.to(devices[0]).half()
+
+            e_0_org = model_orig.apply_model(z_half, t_enc_ddpm_dev, emb_0_half).float()
+            e_n_org = model_orig.apply_model(z_half, t_enc_ddpm_dev, emb_n_half).float()
+            e_r_org = model_orig.apply_model(z_r_half, t_enc_ddpm_dev, emb_r_half).float()
+
+            # Pre-calculate target latents (x_0 predictions) for loss
+            assert torch.all(sampler.ddim_alphas[:-1] >= sampler.ddim_alphas[1:])
+            alpha_bar_t = sampler.ddim_alphas[int(t_enc)].to(devices[0])
+            sqrt_one_minus_alpha = torch.sqrt(1 - alpha_bar_t)
+            sqrt_alpha = torch.sqrt(alpha_bar_t)
+
+            z_n_org_pred = (z - sqrt_one_minus_alpha * e_n_org) / sqrt_alpha
+            z_0_org_pred = (z - sqrt_one_minus_alpha * e_0_org) / sqrt_alpha
+            z_r_org_pred = (z_r - sqrt_one_minus_alpha * e_r_org) / sqrt_alpha
             
-            # CHANGE: Cast back to float for loss calculation consistency
-            e_0_org = e_0_org.float()
-            e_n_org = e_n_org.float()
-            e_r_org = e_r_org.float()
+            # Move targets to CPU immediately
+            z_n_org_pred = z_n_org_pred.cpu()
+            z_0_org_pred = z_0_org_pred.cpu()
+            z_r_org_pred = z_r_org_pred.cpu()
 
-        # breakpoint()
-        # get conditional score
-        e_n_wo_prompt = model.apply_model(z.to(devices[0]), t_enc_ddpm.to(devices[0]), emb_n.to(devices[0]))
-        e_r_wo_prompt = model.apply_model(z_r.to(devices[0]), t_enc_ddpm.to(devices[0]), emb_r.to(devices[0]))
+        # Clear GPU memory
+        del e_0_org, e_n_org, e_r_org, z_half, z_r_half, emb_0_half, emb_n_half, emb_r_half
+        model_orig.to("cpu")
+        torch.cuda.empty_cache()
 
-        e_0_org.requires_grad = False
-        e_n_org.requires_grad = False
-        e_r_org.requires_grad = False
-
-        # using DDIM inversion to project the x_t to x_0
-        # check that the alphas is in descending order
-        assert torch.all(sampler.ddim_alphas[:-1] >= sampler.ddim_alphas[1:])
-        alpha_bar_t = sampler.ddim_alphas[int(t_enc)]
-        z_n_wo_prompt_pred = (z - torch.sqrt(1 - alpha_bar_t) * e_n_wo_prompt) / torch.sqrt(alpha_bar_t)
-        z_r_wo_prompt_pred = (z_r - torch.sqrt(1 - alpha_bar_t) * e_r_wo_prompt) / torch.sqrt(alpha_bar_t)
-
-        z_n_org_pred = (z - torch.sqrt(1 - alpha_bar_t) * e_n_org) / torch.sqrt(alpha_bar_t)
-        z_0_org_pred = (z - torch.sqrt(1 - alpha_bar_t) * e_0_org) / torch.sqrt(alpha_bar_t)
-        z_r_org_pred = (z_r - torch.sqrt(1 - alpha_bar_t) * e_r_org) / torch.sqrt(alpha_bar_t)
-
-        # First stage, optimizing additional prompt
-
+        # === 3. Sequential Forward/Backward to Save Memory ===
+        
+        # NOTE: z_n_wo_prompt_pred = (z - sqrt_one_minus_alpha * e_n_wo_prompt) / sqrt_alpha
+        # Loss N depends on z_n_org_pred and z_0_org_pred
+        
         if i % args.pgd_num_steps == 0:
-            # for erased concepts, output aligns with target concept with or without prompt
-            loss = 0
-            loss += criteria(z_n_wo_prompt_pred.to(devices[0]), z_0_org_pred.to(devices[0]) - (negative_guidance * (z_n_org_pred.to(devices[0]) - z_0_org_pred.to(devices[0]))))
-            loss += criteria(z_r_wo_prompt_pred.to(devices[0]), z_r_org_pred.to(devices[0])) # for preserved concepts, output are the same without prompt
+            loss_total_item = 0
+            
+            # --- Part A: Erased Concept (N) ---
+            with torch.cuda.amp.autocast():
+                e_n_wo_prompt = model.apply_model(z.to(devices[0]), t_enc_ddpm.to(devices[0]), emb_n.to(devices[0])).float()
+                z_n_wo_prompt_pred = (z - sqrt_one_minus_alpha * e_n_wo_prompt) / sqrt_alpha
+                
+                # Calculate loss using CPU targets moved back to GPU just for this op
+                target_n = z_0_org_pred.to(devices[0]) - (negative_guidance * (z_n_org_pred.to(devices[0]) - z_0_org_pred.to(devices[0])))
+                loss_n = criteria(z_n_wo_prompt_pred, target_n)
 
-            # update weights to erase the concept
-            loss.backward()
-            losses.append(loss.item())
-            pbar.set_postfix({"loss": loss.item()})
-            history_dict = save_to_dict(loss.item(), 'loss', history_dict)
-            opt.step()
+            scaler.scale(loss_n).backward()
+            loss_total_item += loss_n.item()
+            
+            # Free Graph A
+            del e_n_wo_prompt, z_n_wo_prompt_pred, loss_n, target_n
+            torch.cuda.empty_cache()
+
+            # --- Part B: Preserved Concept (R) ---
+            with torch.cuda.amp.autocast():
+                e_r_wo_prompt = model.apply_model(z_r.to(devices[0]), t_enc_ddpm.to(devices[0]), emb_r.to(devices[0])).float()
+                z_r_wo_prompt_pred = (z_r - sqrt_one_minus_alpha * e_r_wo_prompt) / sqrt_alpha
+                
+                target_r = z_r_org_pred.to(devices[0])
+                loss_r = criteria(z_r_wo_prompt_pred, target_r)
+
+            scaler.scale(loss_r).backward()
+            loss_total_item += loss_r.item()
+            
+            # Free Graph B
+            del e_r_wo_prompt, z_r_wo_prompt_pred, loss_r, target_r
+            
+            losses.append(loss_total_item)
+            pbar.set_postfix({"loss": loss_total_item})
+            history_dict = save_to_dict(loss_total_item, 'loss', history_dict)
+            
+            scaler.step(opt)
+            scaler.update()
+
         else:
-            # update the one_hot vector
-            opt.zero_grad()
-            opt_one_hot.zero_grad()
-            model.zero_grad()
-            model_orig.zero_grad()
-            # one_hot.grad = None
-            loss = - criteria(z_r_wo_prompt_pred.to(devices[0]), z_r_org_pred.to(devices[0])) # maximize the preserved loss
-            print('loss:', loss.item())
+            # Adversarial step (Maximize loss R)
+            with torch.cuda.amp.autocast():
+                e_r_wo_prompt = model.apply_model(z_r.to(devices[0]), t_enc_ddpm.to(devices[0]), emb_r.to(devices[0])).float()
+                z_r_wo_prompt_pred = (z_r - sqrt_one_minus_alpha * e_r_wo_prompt) / sqrt_alpha
+                target_r = z_r_org_pred.to(devices[0])
+                loss = - criteria(z_r_wo_prompt_pred, target_r)
+            
+            # This is lightweight enough to do directly
             loss.backward()
-            preserved_set = preserved_dict[word]
-            print('index of one_hot before:', torch.argmax(one_hot_dict[word], dim=1), preserved_set[torch.argmax(one_hot_dict[word], dim=1)])
-            print('one_hot:', one_hot_dict[word])
-            print('one_hot.grad:', one_hot_dict[word].grad)
             opt_one_hot.step()
-            print('index of one_hot after:', torch.argmax(one_hot_dict[word], dim=1), preserved_set[torch.argmax(one_hot_dict[word], dim=1)])
-            print('one_hot:', one_hot_dict[word])
-            history_dict = save_to_dict([one_hot_dict[word].cpu().detach().numpy(), i, preserved_set[torch.argmax(one_hot_dict[word], dim=1)], word], 'one_hot', history_dict)
-
-        # update the preserved matrix 
-        if (i+1) % args.gumbel_update == 0 and args.gumbel_update > 0: 
-            raise ValueError('Not implemented yet')
-            preserved_set = preserved_dict[word]
-            print('Updating preserved matrix at iteration:', i+1)
-            print('preserved_set before update:', preserved_set)
-            preserved_set = learn_k_means_from_output(model, model_orig, sampler, tokens_embedding, start_guidance, time_step=args.gumbel_time_step, start_concept= 'a photo', num_centers=args.gumbel_num_centers, sim='l2', multi_steps=args.gumbel_multi_steps)
-            print('preserved_set after update:', preserved_set)
-            preserved_matrix = torch.cat([create_prompt(word) for word in preserved_set], dim=0) # [n, 77, 768]
-            preserved_matrix = preserved_matrix.flatten(start_dim=1) # [n, 77*768]
-            history_dict = save_to_dict(preserved_set, f'preserved_set_{i+1}', history_dict)
 
         # save checkpoint and loss curve
-        # if (i+1) % 500 == 0 and i+1 != iterations and i+1>= 500:
-        #     # save_model(model, name, i-1, save_compvis=True, save_diffusers=False)
-        #     save_model(model, name, None, models_path=models_path, save_compvis=True, save_diffusers=False)
-            
         if i % (args.save_freq) == 0:
             with torch.no_grad():
                 for word in erased_words:
@@ -465,9 +367,10 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
                     word_r = preserved_set[torch.argmax(one_hot_dict[word], dim=1)]
                     emb_r_eval = torch.reshape(torch.matmul(gumbel_softmax(one_hot_dict[word]), preserved_matrix_dict[word]).unsqueeze(0), (1, 77, 768))
                     emb_n_eval = model.get_learned_conditioning([word])
-                    z_r_till_T = quick_sample_till_t(emb_r_eval.to(devices[0]), start_guidance, fixed_start_code, int(ddim_steps))
+                    with torch.cuda.amp.autocast():
+                        z_r_till_T = quick_sample_till_t(emb_r_eval.to(devices[0]), start_guidance, fixed_start_code, int(ddim_steps))
+                        z_n_till_T = quick_sample_till_t(emb_n_eval.to(devices[0]), start_guidance, fixed_start_code, int(ddim_steps))
                     decode_and_save_image(model_orig, z_r_till_T, path=f'evaluation_folder/{name}/im_r_till_T_{i}_{word}_{word_r}.png')
-                    z_n_till_T = quick_sample_till_t(emb_n_eval.to(devices[0]), start_guidance, fixed_start_code, int(ddim_steps))
                     decode_and_save_image(model_orig, z_n_till_T, path=f'evaluation_folder/{name}/im_n_till_T_{i}_{word}.png')
 
         if i % 100 == 0:
@@ -475,15 +378,10 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
             torch.save(history_dict, f'invest_folder/{name}/history_dict_{i}.pt')
 
     model.eval()
-
     save_model(model, name, None, models_path=models_path, save_compvis=True, save_diffusers=True, compvis_config_file=config_path, diffusers_config_file=diffusers_config_path)
     save_history(losses, name, word_print, models_path=models_path)
     
 def save_model(model, name, num, models_path, compvis_config_file=None, diffusers_config_file=None, device='cpu', save_compvis=True, save_diffusers=True):
-    # SAVE MODEL
-
-#     PATH = f'{FOLDER}/{model_type}-word_{word_print}-method_{train_method}-sg_{start_guidance}-ng_{neg_guidance}-iter_{i+1}-lr_{lr}-startmodel_{start_model}-numacc_{numacc}.pt'
-
     folder_path = f'{models_path}/{name}'
     os.makedirs(folder_path, exist_ok=True)
     if num is not None:

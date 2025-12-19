@@ -12,9 +12,9 @@ import os
 import math
 import torch
 import torch.nn as nn
-import torch.nn.functional as F  # Added F for group_norm
 import numpy as np
 from einops import repeat
+from torch.cuda.amp import custom_bwd, custom_fwd
 
 from ldm.util import instantiate_from_config
 
@@ -119,6 +119,7 @@ def checkpoint(func, inputs, params, flag):
 
 class CheckpointFunction(torch.autograd.Function):
     @staticmethod
+    @custom_fwd
     def forward(ctx, run_function, length, *args):
         ctx.run_function = run_function
         ctx.input_tensors = list(args[:length])
@@ -129,6 +130,7 @@ class CheckpointFunction(torch.autograd.Function):
         return output_tensors
 
     @staticmethod
+    @custom_bwd
     def backward(ctx, *output_grads):
         ctx.input_tensors = [x.detach().requires_grad_(True) for x in ctx.input_tensors]
         with torch.enable_grad():
@@ -214,16 +216,10 @@ class SiLU(nn.Module):
 
 class GroupNorm32(nn.GroupNorm):
     def forward(self, x):
-        # FIX: Explicitly use F.group_norm and cast weights/bias to float
-        # This allows running the norm in fp32 even if the model params are fp16
-        return F.group_norm(
-            x.float(), 
-            self.num_groups, 
-            self.weight.float() if self.weight is not None else None, 
-            self.bias.float() if self.bias is not None else None, 
-            self.eps
-        ).type(x.dtype)
-
+        # FIX: Ensure input dtype matches weight dtype (needed for Mixed Precision/Half weights)
+        if self.weight is not None:
+             return super().forward(x.to(self.weight.dtype)).type(x.dtype)
+        return super().forward(x.float()).type(x.dtype)
 
 def conv_nd(dims, *args, **kwargs):
     """
