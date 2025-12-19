@@ -104,6 +104,8 @@ def plot_loss(losses, path,word, n=100):
 
 def get_models(config_path, ckpt_path, devices):
     model_orig = load_model_from_config(config_path, ckpt_path, devices[1])
+    # CHANGE: Convert original model to half precision
+    model_orig = model_orig.half()
     sampler_orig = DDIMSampler(model_orig)
 
     model = load_model_from_config(config_path, ckpt_path, devices[0])

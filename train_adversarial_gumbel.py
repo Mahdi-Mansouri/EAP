@@ -185,7 +185,7 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
 
     # import pdb; pdb.set_trace()
     def decode_and_extract_image(model_orig, z):
-        x = model_orig.decode_first_stage(z)
+        x = model_orig.decode_first_stage(z.to(model_orig.device).half())
         x = torch.clamp((x + 1.0)/2.0, min=0.0, max=1.0)
         x = rearrange(x, 'b c h w -> b (c h) w')
         image = clip_preprocess(Image.fromarray((x[0].cpu().numpy()*255).astype(np.uint8)))
@@ -194,10 +194,11 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
         return image_features
     
     def decode_and_save_image(model_orig, z, path):
-        x = model_orig.decode_first_stage(z)
+        # CHANGE: Cast z to half precision because model_orig is half
+        x = model_orig.decode_first_stage(z.to(model_orig.device).half())
         x = torch.clamp((x + 1.0)/2.0, min=0.0, max=1.0)
         x = rearrange(x, 'b c h w -> b h w c')
-        image = Image.fromarray((x[0].cpu().numpy()*255).astype(np.uint8))
+        image = Image.fromarray((x[0].float().cpu().numpy()*255).astype(np.uint8))
         plt.imshow(image)
         plt.xticks([])
         plt.yticks([])
@@ -377,9 +378,15 @@ def train(prompt, train_method, start_guidance, negative_guidance, iterations, l
             z_r = quick_sample_till_t(emb_r.to(devices[0]), start_guidance, start_code, int(t_enc))
 
             # get conditional and unconditional scores from frozen model at time step t and image z
-            e_0_org = model_orig.apply_model(z.to(devices[1]), t_enc_ddpm.to(devices[1]), emb_0.to(devices[1]))
-            e_n_org = model_orig.apply_model(z.to(devices[1]), t_enc_ddpm.to(devices[1]), emb_n.to(devices[1]))
-            e_r_org = model_orig.apply_model(z_r.to(devices[1]), t_enc_ddpm.to(devices[1]), emb_r.to(devices[1]))
+            # CHANGE: Cast inputs to half precision for model_orig
+            e_0_org = model_orig.apply_model(z.to(devices[1]).half(), t_enc_ddpm.to(devices[1]), emb_0.to(devices[1]).half())
+            e_n_org = model_orig.apply_model(z.to(devices[1]).half(), t_enc_ddpm.to(devices[1]), emb_n.to(devices[1]).half())
+            e_r_org = model_orig.apply_model(z_r.to(devices[1]).half(), t_enc_ddpm.to(devices[1]), emb_r.to(devices[1]).half())
+            
+            # CHANGE: Cast back to float for loss calculation consistency
+            e_0_org = e_0_org.float()
+            e_n_org = e_n_org.float()
+            e_r_org = e_r_org.float()
 
         # breakpoint()
         # get conditional score

@@ -1,0 +1,975 @@
+Script started on 2025-12-19 00:09:38+00:00 [COMMAND="bash run_nudity.sh" TERM="tmux-256color" TTY="/dev/pts/4" COLUMNS="178" LINES="47"]
+to be erased: ['nudity']
+to be preserved: ['']
+/home/mehdi/EAP/Erasing-Adversarial-Preservation/utils_alg.py:22: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  pl_sd = torch.load(ckpt, map_location="cpu")
+LatentDiffusion: Running in eps-prediction mode
+DiffusionWrapper has 859.52 M params.
+making attention of type 'vanilla' with 512 in_channels
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+making attention of type 'vanilla' with 512 in_channels
+/home/mehdi/EAP/Erasing-Adversarial-Preservation/utils_alg.py:22: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  pl_sd = torch.load(ckpt, map_location="cpu")
+LatentDiffusion: Running in eps-prediction mode
+DiffusionWrapper has 859.52 M params.
+making attention of type 'vanilla' with 512 in_channels
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+making attention of type 'vanilla' with 512 in_channels
+input_blocks.0.0.weight
+input_blocks.0.0.bias
+input_blocks.1.0.in_layers.0.weight
+input_blocks.1.0.in_layers.0.bias
+input_blocks.1.0.in_layers.2.weight
+input_blocks.1.0.in_layers.2.bias
+input_blocks.1.0.emb_layers.1.weight
+input_blocks.1.0.emb_layers.1.bias
+input_blocks.1.0.out_layers.0.weight
+input_blocks.1.0.out_layers.0.bias
+input_blocks.1.0.out_layers.3.weight
+input_blocks.1.0.out_layers.3.bias
+input_blocks.1.1.norm.weight
+input_blocks.1.1.norm.bias
+input_blocks.1.1.proj_in.weight
+input_blocks.1.1.proj_in.bias
+input_blocks.1.1.transformer_blocks.0.attn1.to_q.weight
+input_blocks.1.1.transformer_blocks.0.attn1.to_k.weight
+input_blocks.1.1.transformer_blocks.0.attn1.to_v.weight
+input_blocks.1.1.transformer_blocks.0.attn1.to_out.0.weight
+input_blocks.1.1.transformer_blocks.0.attn1.to_out.0.bias
+input_blocks.1.1.transformer_blocks.0.ff.net.0.proj.weight
+input_blocks.1.1.transformer_blocks.0.ff.net.0.proj.bias
+input_blocks.1.1.transformer_blocks.0.ff.net.2.weight
+input_blocks.1.1.transformer_blocks.0.ff.net.2.bias
+input_blocks.1.1.transformer_blocks.0.norm1.weight
+input_blocks.1.1.transformer_blocks.0.norm1.bias
+input_blocks.1.1.transformer_blocks.0.norm2.weight
+input_blocks.1.1.transformer_blocks.0.norm2.bias
+input_blocks.1.1.transformer_blocks.0.norm3.weight
+input_blocks.1.1.transformer_blocks.0.norm3.bias
+input_blocks.1.1.proj_out.weight
+input_blocks.1.1.proj_out.bias
+input_blocks.2.0.in_layers.0.weight
+input_blocks.2.0.in_layers.0.bias
+input_blocks.2.0.in_layers.2.weight
+input_blocks.2.0.in_layers.2.bias
+input_blocks.2.0.emb_layers.1.weight
+input_blocks.2.0.emb_layers.1.bias
+input_blocks.2.0.out_layers.0.weight
+input_blocks.2.0.out_layers.0.bias
+input_blocks.2.0.out_layers.3.weight
+input_blocks.2.0.out_layers.3.bias
+input_blocks.2.1.norm.weight
+input_blocks.2.1.norm.bias
+input_blocks.2.1.proj_in.weight
+input_blocks.2.1.proj_in.bias
+input_blocks.2.1.transformer_blocks.0.attn1.to_q.weight
+input_blocks.2.1.transformer_blocks.0.attn1.to_k.weight
+input_blocks.2.1.transformer_blocks.0.attn1.to_v.weight
+input_blocks.2.1.transformer_blocks.0.attn1.to_out.0.weight
+input_blocks.2.1.transformer_blocks.0.attn1.to_out.0.bias
+input_blocks.2.1.transformer_blocks.0.ff.net.0.proj.weight
+input_blocks.2.1.transformer_blocks.0.ff.net.0.proj.bias
+input_blocks.2.1.transformer_blocks.0.ff.net.2.weight
+input_blocks.2.1.transformer_blocks.0.ff.net.2.bias
+input_blocks.2.1.transformer_blocks.0.norm1.weight
+input_blocks.2.1.transformer_blocks.0.norm1.bias
+input_blocks.2.1.transformer_blocks.0.norm2.weight
+input_blocks.2.1.transformer_blocks.0.norm2.bias
+input_blocks.2.1.transformer_blocks.0.norm3.weight
+input_blocks.2.1.transformer_blocks.0.norm3.bias
+input_blocks.2.1.proj_out.weight
+input_blocks.2.1.proj_out.bias
+input_blocks.3.0.op.weight
+input_blocks.3.0.op.bias
+input_blocks.4.0.in_layers.0.weight
+input_blocks.4.0.in_layers.0.bias
+input_blocks.4.0.in_layers.2.weight
+input_blocks.4.0.in_layers.2.bias
+input_blocks.4.0.emb_layers.1.weight
+input_blocks.4.0.emb_layers.1.bias
+input_blocks.4.0.out_layers.0.weight
+input_blocks.4.0.out_layers.0.bias
+input_blocks.4.0.out_layers.3.weight
+input_blocks.4.0.out_layers.3.bias
+input_blocks.4.0.skip_connection.weight
+input_blocks.4.0.skip_connection.bias
+input_blocks.4.1.norm.weight
+input_blocks.4.1.norm.bias
+input_blocks.4.1.proj_in.weight
+input_blocks.4.1.proj_in.bias
+input_blocks.4.1.transformer_blocks.0.attn1.to_q.weight
+input_blocks.4.1.transformer_blocks.0.attn1.to_k.weight
+input_blocks.4.1.transformer_blocks.0.attn1.to_v.weight
+input_blocks.4.1.transformer_blocks.0.attn1.to_out.0.weight
+input_blocks.4.1.transformer_blocks.0.attn1.to_out.0.bias
+input_blocks.4.1.transformer_blocks.0.ff.net.0.proj.weight
+input_blocks.4.1.transformer_blocks.0.ff.net.0.proj.bias
+input_blocks.4.1.transformer_blocks.0.ff.net.2.weight
+input_blocks.4.1.transformer_blocks.0.ff.net.2.bias
+input_blocks.4.1.transformer_blocks.0.norm1.weight
+input_blocks.4.1.transformer_blocks.0.norm1.bias
+input_blocks.4.1.transformer_blocks.0.norm2.weight
+input_blocks.4.1.transformer_blocks.0.norm2.bias
+input_blocks.4.1.transformer_blocks.0.norm3.weight
+input_blocks.4.1.transformer_blocks.0.norm3.bias
+input_blocks.4.1.proj_out.weight
+input_blocks.4.1.proj_out.bias
+input_blocks.5.0.in_layers.0.weight
+input_blocks.5.0.in_layers.0.bias
+input_blocks.5.0.in_layers.2.weight
+input_blocks.5.0.in_layers.2.bias
+input_blocks.5.0.emb_layers.1.weight
+input_blocks.5.0.emb_layers.1.bias
+input_blocks.5.0.out_layers.0.weight
+input_blocks.5.0.out_layers.0.bias
+input_blocks.5.0.out_layers.3.weight
+input_blocks.5.0.out_layers.3.bias
+input_blocks.5.1.norm.weight
+input_blocks.5.1.norm.bias
+input_blocks.5.1.proj_in.weight
+input_blocks.5.1.proj_in.bias
+input_blocks.5.1.transformer_blocks.0.attn1.to_q.weight
+input_blocks.5.1.transformer_blocks.0.attn1.to_k.weight
+input_blocks.5.1.transformer_blocks.0.attn1.to_v.weight
+input_blocks.5.1.transformer_blocks.0.attn1.to_out.0.weight
+input_blocks.5.1.transformer_blocks.0.attn1.to_out.0.bias
+input_blocks.5.1.transformer_blocks.0.ff.net.0.proj.weight
+input_blocks.5.1.transformer_blocks.0.ff.net.0.proj.bias
+input_blocks.5.1.transformer_blocks.0.ff.net.2.weight
+input_blocks.5.1.transformer_blocks.0.ff.net.2.bias
+input_blocks.5.1.transformer_blocks.0.norm1.weight
+input_blocks.5.1.transformer_blocks.0.norm1.bias
+input_blocks.5.1.transformer_blocks.0.norm2.weight
+input_blocks.5.1.transformer_blocks.0.norm2.bias
+input_blocks.5.1.transformer_blocks.0.norm3.weight
+input_blocks.5.1.transformer_blocks.0.norm3.bias
+input_blocks.5.1.proj_out.weight
+input_blocks.5.1.proj_out.bias
+input_blocks.6.0.op.weight
+input_blocks.6.0.op.bias
+input_blocks.7.0.in_layers.0.weight
+input_blocks.7.0.in_layers.0.bias
+input_blocks.7.0.in_layers.2.weight
+input_blocks.7.0.in_layers.2.bias
+input_blocks.7.0.emb_layers.1.weight
+input_blocks.7.0.emb_layers.1.bias
+input_blocks.7.0.out_layers.0.weight
+input_blocks.7.0.out_layers.0.bias
+input_blocks.7.0.out_layers.3.weight
+input_blocks.7.0.out_layers.3.bias
+input_blocks.7.0.skip_connection.weight
+input_blocks.7.0.skip_connection.bias
+input_blocks.7.1.norm.weight
+input_blocks.7.1.norm.bias
+input_blocks.7.1.proj_in.weight
+input_blocks.7.1.proj_in.bias
+input_blocks.7.1.transformer_blocks.0.attn1.to_q.weight
+input_blocks.7.1.transformer_blocks.0.attn1.to_k.weight
+input_blocks.7.1.transformer_blocks.0.attn1.to_v.weight
+input_blocks.7.1.transformer_blocks.0.attn1.to_out.0.weight
+input_blocks.7.1.transformer_blocks.0.attn1.to_out.0.bias
+input_blocks.7.1.transformer_blocks.0.ff.net.0.proj.weight
+input_blocks.7.1.transformer_blocks.0.ff.net.0.proj.bias
+input_blocks.7.1.transformer_blocks.0.ff.net.2.weight
+input_blocks.7.1.transformer_blocks.0.ff.net.2.bias
+input_blocks.7.1.transformer_blocks.0.norm1.weight
+input_blocks.7.1.transformer_blocks.0.norm1.bias
+input_blocks.7.1.transformer_blocks.0.norm2.weight
+input_blocks.7.1.transformer_blocks.0.norm2.bias
+input_blocks.7.1.transformer_blocks.0.norm3.weight
+input_blocks.7.1.transformer_blocks.0.norm3.bias
+input_blocks.7.1.proj_out.weight
+input_blocks.7.1.proj_out.bias
+input_blocks.8.0.in_layers.0.weight
+input_blocks.8.0.in_layers.0.bias
+input_blocks.8.0.in_layers.2.weight
+input_blocks.8.0.in_layers.2.bias
+input_blocks.8.0.emb_layers.1.weight
+input_blocks.8.0.emb_layers.1.bias
+input_blocks.8.0.out_layers.0.weight
+input_blocks.8.0.out_layers.0.bias
+input_blocks.8.0.out_layers.3.weight
+input_blocks.8.0.out_layers.3.bias
+input_blocks.8.1.norm.weight
+input_blocks.8.1.norm.bias
+input_blocks.8.1.proj_in.weight
+input_blocks.8.1.proj_in.bias
+input_blocks.8.1.transformer_blocks.0.attn1.to_q.weight
+input_blocks.8.1.transformer_blocks.0.attn1.to_k.weight
+input_blocks.8.1.transformer_blocks.0.attn1.to_v.weight
+input_blocks.8.1.transformer_blocks.0.attn1.to_out.0.weight
+input_blocks.8.1.transformer_blocks.0.attn1.to_out.0.bias
+input_blocks.8.1.transformer_blocks.0.ff.net.0.proj.weight
+input_blocks.8.1.transformer_blocks.0.ff.net.0.proj.bias
+input_blocks.8.1.transformer_blocks.0.ff.net.2.weight
+input_blocks.8.1.transformer_blocks.0.ff.net.2.bias
+input_blocks.8.1.transformer_blocks.0.norm1.weight
+input_blocks.8.1.transformer_blocks.0.norm1.bias
+input_blocks.8.1.transformer_blocks.0.norm2.weight
+input_blocks.8.1.transformer_blocks.0.norm2.bias
+input_blocks.8.1.transformer_blocks.0.norm3.weight
+input_blocks.8.1.transformer_blocks.0.norm3.bias
+input_blocks.8.1.proj_out.weight
+input_blocks.8.1.proj_out.bias
+input_blocks.9.0.op.weight
+input_blocks.9.0.op.bias
+input_blocks.10.0.in_layers.0.weight
+input_blocks.10.0.in_layers.0.bias
+input_blocks.10.0.in_layers.2.weight
+input_blocks.10.0.in_layers.2.bias
+input_blocks.10.0.emb_layers.1.weight
+input_blocks.10.0.emb_layers.1.bias
+input_blocks.10.0.out_layers.0.weight
+input_blocks.10.0.out_layers.0.bias
+input_blocks.10.0.out_layers.3.weight
+input_blocks.10.0.out_layers.3.bias
+input_blocks.11.0.in_layers.0.weight
+input_blocks.11.0.in_layers.0.bias
+input_blocks.11.0.in_layers.2.weight
+input_blocks.11.0.in_layers.2.bias
+input_blocks.11.0.emb_layers.1.weight
+input_blocks.11.0.emb_layers.1.bias
+input_blocks.11.0.out_layers.0.weight
+input_blocks.11.0.out_layers.0.bias
+input_blocks.11.0.out_layers.3.weight
+input_blocks.11.0.out_layers.3.bias
+middle_block.0.in_layers.0.weight
+middle_block.0.in_layers.0.bias
+middle_block.0.in_layers.2.weight
+middle_block.0.in_layers.2.bias
+middle_block.0.emb_layers.1.weight
+middle_block.0.emb_layers.1.bias
+middle_block.0.out_layers.0.weight
+middle_block.0.out_layers.0.bias
+middle_block.0.out_layers.3.weight
+middle_block.0.out_layers.3.bias
+middle_block.1.norm.weight
+middle_block.1.norm.bias
+middle_block.1.proj_in.weight
+middle_block.1.proj_in.bias
+middle_block.1.transformer_blocks.0.attn1.to_q.weight
+middle_block.1.transformer_blocks.0.attn1.to_k.weight
+middle_block.1.transformer_blocks.0.attn1.to_v.weight
+middle_block.1.transformer_blocks.0.attn1.to_out.0.weight
+middle_block.1.transformer_blocks.0.attn1.to_out.0.bias
+middle_block.1.transformer_blocks.0.ff.net.0.proj.weight
+middle_block.1.transformer_blocks.0.ff.net.0.proj.bias
+middle_block.1.transformer_blocks.0.ff.net.2.weight
+middle_block.1.transformer_blocks.0.ff.net.2.bias
+middle_block.1.transformer_blocks.0.norm1.weight
+middle_block.1.transformer_blocks.0.norm1.bias
+middle_block.1.transformer_blocks.0.norm2.weight
+middle_block.1.transformer_blocks.0.norm2.bias
+middle_block.1.transformer_blocks.0.norm3.weight
+middle_block.1.transformer_blocks.0.norm3.bias
+middle_block.1.proj_out.weight
+middle_block.1.proj_out.bias
+middle_block.2.in_layers.0.weight
+middle_block.2.in_layers.0.bias
+middle_block.2.in_layers.2.weight
+middle_block.2.in_layers.2.bias
+middle_block.2.emb_layers.1.weight
+middle_block.2.emb_layers.1.bias
+middle_block.2.out_layers.0.weight
+middle_block.2.out_layers.0.bias
+middle_block.2.out_layers.3.weight
+middle_block.2.out_layers.3.bias
+output_blocks.0.0.in_layers.0.weight
+output_blocks.0.0.in_layers.0.bias
+output_blocks.0.0.in_layers.2.weight
+output_blocks.0.0.in_layers.2.bias
+output_blocks.0.0.emb_layers.1.weight
+output_blocks.0.0.emb_layers.1.bias
+output_blocks.0.0.out_layers.0.weight
+output_blocks.0.0.out_layers.0.bias
+output_blocks.0.0.out_layers.3.weight
+output_blocks.0.0.out_layers.3.bias
+output_blocks.0.0.skip_connection.weight
+output_blocks.0.0.skip_connection.bias
+output_blocks.1.0.in_layers.0.weight
+output_blocks.1.0.in_layers.0.bias
+output_blocks.1.0.in_layers.2.weight
+output_blocks.1.0.in_layers.2.bias
+output_blocks.1.0.emb_layers.1.weight
+output_blocks.1.0.emb_layers.1.bias
+output_blocks.1.0.out_layers.0.weight
+output_blocks.1.0.out_layers.0.bias
+output_blocks.1.0.out_layers.3.weight
+output_blocks.1.0.out_layers.3.bias
+output_blocks.1.0.skip_connection.weight
+output_blocks.1.0.skip_connection.bias
+output_blocks.2.0.in_layers.0.weight
+output_blocks.2.0.in_layers.0.bias
+output_blocks.2.0.in_layers.2.weight
+output_blocks.2.0.in_layers.2.bias
+output_blocks.2.0.emb_layers.1.weight
+output_blocks.2.0.emb_layers.1.bias
+output_blocks.2.0.out_layers.0.weight
+output_blocks.2.0.out_layers.0.bias
+output_blocks.2.0.out_layers.3.weight
+output_blocks.2.0.out_layers.3.bias
+output_blocks.2.0.skip_connection.weight
+output_blocks.2.0.skip_connection.bias
+output_blocks.2.1.conv.weight
+output_blocks.2.1.conv.bias
+output_blocks.3.0.in_layers.0.weight
+output_blocks.3.0.in_layers.0.bias
+output_blocks.3.0.in_layers.2.weight
+output_blocks.3.0.in_layers.2.bias
+output_blocks.3.0.emb_layers.1.weight
+output_blocks.3.0.emb_layers.1.bias
+output_blocks.3.0.out_layers.0.weight
+output_blocks.3.0.out_layers.0.bias
+output_blocks.3.0.out_layers.3.weight
+output_blocks.3.0.out_layers.3.bias
+output_blocks.3.0.skip_connection.weight
+output_blocks.3.0.skip_connection.bias
+output_blocks.3.1.norm.weight
+output_blocks.3.1.norm.bias
+output_blocks.3.1.proj_in.weight
+output_blocks.3.1.proj_in.bias
+output_blocks.3.1.transformer_blocks.0.attn1.to_q.weight
+output_blocks.3.1.transformer_blocks.0.attn1.to_k.weight
+output_blocks.3.1.transformer_blocks.0.attn1.to_v.weight
+output_blocks.3.1.transformer_blocks.0.attn1.to_out.0.weight
+output_blocks.3.1.transformer_blocks.0.attn1.to_out.0.bias
+output_blocks.3.1.transformer_blocks.0.ff.net.0.proj.weight
+output_blocks.3.1.transformer_blocks.0.ff.net.0.proj.bias
+output_blocks.3.1.transformer_blocks.0.ff.net.2.weight
+output_blocks.3.1.transformer_blocks.0.ff.net.2.bias
+output_blocks.3.1.transformer_blocks.0.norm1.weight
+output_blocks.3.1.transformer_blocks.0.norm1.bias
+output_blocks.3.1.transformer_blocks.0.norm2.weight
+output_blocks.3.1.transformer_blocks.0.norm2.bias
+output_blocks.3.1.transformer_blocks.0.norm3.weight
+output_blocks.3.1.transformer_blocks.0.norm3.bias
+output_blocks.3.1.proj_out.weight
+output_blocks.3.1.proj_out.bias
+output_blocks.4.0.in_layers.0.weight
+output_blocks.4.0.in_layers.0.bias
+output_blocks.4.0.in_layers.2.weight
+output_blocks.4.0.in_layers.2.bias
+output_blocks.4.0.emb_layers.1.weight
+output_blocks.4.0.emb_layers.1.bias
+output_blocks.4.0.out_layers.0.weight
+output_blocks.4.0.out_layers.0.bias
+output_blocks.4.0.out_layers.3.weight
+output_blocks.4.0.out_layers.3.bias
+output_blocks.4.0.skip_connection.weight
+output_blocks.4.0.skip_connection.bias
+output_blocks.4.1.norm.weight
+output_blocks.4.1.norm.bias
+output_blocks.4.1.proj_in.weight
+output_blocks.4.1.proj_in.bias
+output_blocks.4.1.transformer_blocks.0.attn1.to_q.weight
+output_blocks.4.1.transformer_blocks.0.attn1.to_k.weight
+output_blocks.4.1.transformer_blocks.0.attn1.to_v.weight
+output_blocks.4.1.transformer_blocks.0.attn1.to_out.0.weight
+output_blocks.4.1.transformer_blocks.0.attn1.to_out.0.bias
+output_blocks.4.1.transformer_blocks.0.ff.net.0.proj.weight
+output_blocks.4.1.transformer_blocks.0.ff.net.0.proj.bias
+output_blocks.4.1.transformer_blocks.0.ff.net.2.weight
+output_blocks.4.1.transformer_blocks.0.ff.net.2.bias
+output_blocks.4.1.transformer_blocks.0.norm1.weight
+output_blocks.4.1.transformer_blocks.0.norm1.bias
+output_blocks.4.1.transformer_blocks.0.norm2.weight
+output_blocks.4.1.transformer_blocks.0.norm2.bias
+output_blocks.4.1.transformer_blocks.0.norm3.weight
+output_blocks.4.1.transformer_blocks.0.norm3.bias
+output_blocks.4.1.proj_out.weight
+output_blocks.4.1.proj_out.bias
+output_blocks.5.0.in_layers.0.weight
+output_blocks.5.0.in_layers.0.bias
+output_blocks.5.0.in_layers.2.weight
+output_blocks.5.0.in_layers.2.bias
+output_blocks.5.0.emb_layers.1.weight
+output_blocks.5.0.emb_layers.1.bias
+output_blocks.5.0.out_layers.0.weight
+output_blocks.5.0.out_layers.0.bias
+output_blocks.5.0.out_layers.3.weight
+output_blocks.5.0.out_layers.3.bias
+output_blocks.5.0.skip_connection.weight
+output_blocks.5.0.skip_connection.bias
+output_blocks.5.1.norm.weight
+output_blocks.5.1.norm.bias
+output_blocks.5.1.proj_in.weight
+output_blocks.5.1.proj_in.bias
+output_blocks.5.1.transformer_blocks.0.attn1.to_q.weight
+output_blocks.5.1.transformer_blocks.0.attn1.to_k.weight
+output_blocks.5.1.transformer_blocks.0.attn1.to_v.weight
+output_blocks.5.1.transformer_blocks.0.attn1.to_out.0.weight
+output_blocks.5.1.transformer_blocks.0.attn1.to_out.0.bias
+output_blocks.5.1.transformer_blocks.0.ff.net.0.proj.weight
+output_blocks.5.1.transformer_blocks.0.ff.net.0.proj.bias
+output_blocks.5.1.transformer_blocks.0.ff.net.2.weight
+output_blocks.5.1.transformer_blocks.0.ff.net.2.bias
+output_blocks.5.1.transformer_blocks.0.norm1.weight
+output_blocks.5.1.transformer_blocks.0.norm1.bias
+output_blocks.5.1.transformer_blocks.0.norm2.weight
+output_blocks.5.1.transformer_blocks.0.norm2.bias
+output_blocks.5.1.transformer_blocks.0.norm3.weight
+output_blocks.5.1.transformer_blocks.0.norm3.bias
+output_blocks.5.1.proj_out.weight
+output_blocks.5.1.proj_out.bias
+output_blocks.5.2.conv.weight
+output_blocks.5.2.conv.bias
+output_blocks.6.0.in_layers.0.weight
+output_blocks.6.0.in_layers.0.bias
+output_blocks.6.0.in_layers.2.weight
+output_blocks.6.0.in_layers.2.bias
+output_blocks.6.0.emb_layers.1.weight
+output_blocks.6.0.emb_layers.1.bias
+output_blocks.6.0.out_layers.0.weight
+output_blocks.6.0.out_layers.0.bias
+output_blocks.6.0.out_layers.3.weight
+output_blocks.6.0.out_layers.3.bias
+output_blocks.6.0.skip_connection.weight
+output_blocks.6.0.skip_connection.bias
+output_blocks.6.1.norm.weight
+output_blocks.6.1.norm.bias
+output_blocks.6.1.proj_in.weight
+output_blocks.6.1.proj_in.bias
+output_blocks.6.1.transformer_blocks.0.attn1.to_q.weight
+output_blocks.6.1.transformer_blocks.0.attn1.to_k.weight
+output_blocks.6.1.transformer_blocks.0.attn1.to_v.weight
+output_blocks.6.1.transformer_blocks.0.attn1.to_out.0.weight
+output_blocks.6.1.transformer_blocks.0.attn1.to_out.0.bias
+output_blocks.6.1.transformer_blocks.0.ff.net.0.proj.weight
+output_blocks.6.1.transformer_blocks.0.ff.net.0.proj.bias
+output_blocks.6.1.transformer_blocks.0.ff.net.2.weight
+output_blocks.6.1.transformer_blocks.0.ff.net.2.bias
+output_blocks.6.1.transformer_blocks.0.norm1.weight
+output_blocks.6.1.transformer_blocks.0.norm1.bias
+output_blocks.6.1.transformer_blocks.0.norm2.weight
+output_blocks.6.1.transformer_blocks.0.norm2.bias
+output_blocks.6.1.transformer_blocks.0.norm3.weight
+output_blocks.6.1.transformer_blocks.0.norm3.bias
+output_blocks.6.1.proj_out.weight
+output_blocks.6.1.proj_out.bias
+output_blocks.7.0.in_layers.0.weight
+output_blocks.7.0.in_layers.0.bias
+output_blocks.7.0.in_layers.2.weight
+output_blocks.7.0.in_layers.2.bias
+output_blocks.7.0.emb_layers.1.weight
+output_blocks.7.0.emb_layers.1.bias
+output_blocks.7.0.out_layers.0.weight
+output_blocks.7.0.out_layers.0.bias
+output_blocks.7.0.out_layers.3.weight
+output_blocks.7.0.out_layers.3.bias
+output_blocks.7.0.skip_connection.weight
+output_blocks.7.0.skip_connection.bias
+output_blocks.7.1.norm.weight
+output_blocks.7.1.norm.bias
+output_blocks.7.1.proj_in.weight
+output_blocks.7.1.proj_in.bias
+output_blocks.7.1.transformer_blocks.0.attn1.to_q.weight
+output_blocks.7.1.transformer_blocks.0.attn1.to_k.weight
+output_blocks.7.1.transformer_blocks.0.attn1.to_v.weight
+output_blocks.7.1.transformer_blocks.0.attn1.to_out.0.weight
+output_blocks.7.1.transformer_blocks.0.attn1.to_out.0.bias
+output_blocks.7.1.transformer_blocks.0.ff.net.0.proj.weight
+output_blocks.7.1.transformer_blocks.0.ff.net.0.proj.bias
+output_blocks.7.1.transformer_blocks.0.ff.net.2.weight
+output_blocks.7.1.transformer_blocks.0.ff.net.2.bias
+output_blocks.7.1.transformer_blocks.0.norm1.weight
+output_blocks.7.1.transformer_blocks.0.norm1.bias
+output_blocks.7.1.transformer_blocks.0.norm2.weight
+output_blocks.7.1.transformer_blocks.0.norm2.bias
+output_blocks.7.1.transformer_blocks.0.norm3.weight
+output_blocks.7.1.transformer_blocks.0.norm3.bias
+output_blocks.7.1.proj_out.weight
+output_blocks.7.1.proj_out.bias
+output_blocks.8.0.in_layers.0.weight
+output_blocks.8.0.in_layers.0.bias
+output_blocks.8.0.in_layers.2.weight
+output_blocks.8.0.in_layers.2.bias
+output_blocks.8.0.emb_layers.1.weight
+output_blocks.8.0.emb_layers.1.bias
+output_blocks.8.0.out_layers.0.weight
+output_blocks.8.0.out_layers.0.bias
+output_blocks.8.0.out_layers.3.weight
+output_blocks.8.0.out_layers.3.bias
+output_blocks.8.0.skip_connection.weight
+output_blocks.8.0.skip_connection.bias
+output_blocks.8.1.norm.weight
+output_blocks.8.1.norm.bias
+output_blocks.8.1.proj_in.weight
+output_blocks.8.1.proj_in.bias
+output_blocks.8.1.transformer_blocks.0.attn1.to_q.weight
+output_blocks.8.1.transformer_blocks.0.attn1.to_k.weight
+output_blocks.8.1.transformer_blocks.0.attn1.to_v.weight
+output_blocks.8.1.transformer_blocks.0.attn1.to_out.0.weight
+output_blocks.8.1.transformer_blocks.0.attn1.to_out.0.bias
+output_blocks.8.1.transformer_blocks.0.ff.net.0.proj.weight
+output_blocks.8.1.transformer_blocks.0.ff.net.0.proj.bias
+output_blocks.8.1.transformer_blocks.0.ff.net.2.weight
+output_blocks.8.1.transformer_blocks.0.ff.net.2.bias
+output_blocks.8.1.transformer_blocks.0.norm1.weight
+output_blocks.8.1.transformer_blocks.0.norm1.bias
+output_blocks.8.1.transformer_blocks.0.norm2.weight
+output_blocks.8.1.transformer_blocks.0.norm2.bias
+output_blocks.8.1.transformer_blocks.0.norm3.weight
+output_blocks.8.1.transformer_blocks.0.norm3.bias
+output_blocks.8.1.proj_out.weight
+output_blocks.8.1.proj_out.bias
+output_blocks.8.2.conv.weight
+output_blocks.8.2.conv.bias
+output_blocks.9.0.in_layers.0.weight
+output_blocks.9.0.in_layers.0.bias
+output_blocks.9.0.in_layers.2.weight
+output_blocks.9.0.in_layers.2.bias
+output_blocks.9.0.emb_layers.1.weight
+output_blocks.9.0.emb_layers.1.bias
+output_blocks.9.0.out_layers.0.weight
+output_blocks.9.0.out_layers.0.bias
+output_blocks.9.0.out_layers.3.weight
+output_blocks.9.0.out_layers.3.bias
+output_blocks.9.0.skip_connection.weight
+output_blocks.9.0.skip_connection.bias
+output_blocks.9.1.norm.weight
+output_blocks.9.1.norm.bias
+output_blocks.9.1.proj_in.weight
+output_blocks.9.1.proj_in.bias
+output_blocks.9.1.transformer_blocks.0.attn1.to_q.weight
+output_blocks.9.1.transformer_blocks.0.attn1.to_k.weight
+output_blocks.9.1.transformer_blocks.0.attn1.to_v.weight
+output_blocks.9.1.transformer_blocks.0.attn1.to_out.0.weight
+output_blocks.9.1.transformer_blocks.0.attn1.to_out.0.bias
+output_blocks.9.1.transformer_blocks.0.ff.net.0.proj.weight
+output_blocks.9.1.transformer_blocks.0.ff.net.0.proj.bias
+output_blocks.9.1.transformer_blocks.0.ff.net.2.weight
+output_blocks.9.1.transformer_blocks.0.ff.net.2.bias
+output_blocks.9.1.transformer_blocks.0.norm1.weight
+output_blocks.9.1.transformer_blocks.0.norm1.bias
+output_blocks.9.1.transformer_blocks.0.norm2.weight
+output_blocks.9.1.transformer_blocks.0.norm2.bias
+output_blocks.9.1.transformer_blocks.0.norm3.weight
+output_blocks.9.1.transformer_blocks.0.norm3.bias
+output_blocks.9.1.proj_out.weight
+output_blocks.9.1.proj_out.bias
+output_blocks.10.0.in_layers.0.weight
+output_blocks.10.0.in_layers.0.bias
+output_blocks.10.0.in_layers.2.weight
+output_blocks.10.0.in_layers.2.bias
+output_blocks.10.0.emb_layers.1.weight
+output_blocks.10.0.emb_layers.1.bias
+output_blocks.10.0.out_layers.0.weight
+output_blocks.10.0.out_layers.0.bias
+output_blocks.10.0.out_layers.3.weight
+output_blocks.10.0.out_layers.3.bias
+output_blocks.10.0.skip_connection.weight
+output_blocks.10.0.skip_connection.bias
+output_blocks.10.1.norm.weight
+output_blocks.10.1.norm.bias
+output_blocks.10.1.proj_in.weight
+output_blocks.10.1.proj_in.bias
+output_blocks.10.1.transformer_blocks.0.attn1.to_q.weight
+output_blocks.10.1.transformer_blocks.0.attn1.to_k.weight
+output_blocks.10.1.transformer_blocks.0.attn1.to_v.weight
+output_blocks.10.1.transformer_blocks.0.attn1.to_out.0.weight
+output_blocks.10.1.transformer_blocks.0.attn1.to_out.0.bias
+output_blocks.10.1.transformer_blocks.0.ff.net.0.proj.weight
+output_blocks.10.1.transformer_blocks.0.ff.net.0.proj.bias
+output_blocks.10.1.transformer_blocks.0.ff.net.2.weight
+output_blocks.10.1.transformer_blocks.0.ff.net.2.bias
+output_blocks.10.1.transformer_blocks.0.norm1.weight
+output_blocks.10.1.transformer_blocks.0.norm1.bias
+output_blocks.10.1.transformer_blocks.0.norm2.weight
+output_blocks.10.1.transformer_blocks.0.norm2.bias
+output_blocks.10.1.transformer_blocks.0.norm3.weight
+output_blocks.10.1.transformer_blocks.0.norm3.bias
+output_blocks.10.1.proj_out.weight
+output_blocks.10.1.proj_out.bias
+output_blocks.11.0.in_layers.0.weight
+output_blocks.11.0.in_layers.0.bias
+output_blocks.11.0.in_layers.2.weight
+output_blocks.11.0.in_layers.2.bias
+output_blocks.11.0.emb_layers.1.weight
+output_blocks.11.0.emb_layers.1.bias
+output_blocks.11.0.out_layers.0.weight
+output_blocks.11.0.out_layers.0.bias
+output_blocks.11.0.out_layers.3.weight
+output_blocks.11.0.out_layers.3.bias
+output_blocks.11.0.skip_connection.weight
+output_blocks.11.0.skip_connection.bias
+output_blocks.11.1.norm.weight
+output_blocks.11.1.norm.bias
+output_blocks.11.1.proj_in.weight
+output_blocks.11.1.proj_in.bias
+output_blocks.11.1.transformer_blocks.0.attn1.to_q.weight
+output_blocks.11.1.transformer_blocks.0.attn1.to_k.weight
+output_blocks.11.1.transformer_blocks.0.attn1.to_v.weight
+output_blocks.11.1.transformer_blocks.0.attn1.to_out.0.weight
+output_blocks.11.1.transformer_blocks.0.attn1.to_out.0.bias
+output_blocks.11.1.transformer_blocks.0.ff.net.0.proj.weight
+output_blocks.11.1.transformer_blocks.0.ff.net.0.proj.bias
+output_blocks.11.1.transformer_blocks.0.ff.net.2.weight
+output_blocks.11.1.transformer_blocks.0.ff.net.2.bias
+output_blocks.11.1.transformer_blocks.0.norm1.weight
+output_blocks.11.1.transformer_blocks.0.norm1.bias
+output_blocks.11.1.transformer_blocks.0.norm2.weight
+output_blocks.11.1.transformer_blocks.0.norm2.bias
+output_blocks.11.1.transformer_blocks.0.norm3.weight
+output_blocks.11.1.transformer_blocks.0.norm3.bias
+output_blocks.11.1.proj_out.weight
+output_blocks.11.1.proj_out.bias
+  0%|                                                                                                                                                    | 0/2000 [00:00<?, ?it/s]/home/mehdi/EAP/Erasing-Adversarial-Preservation/gen_embedding_matrix.py:168: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  embedding_matrix = torch.load(f'models/embedding_matrix_array_EN3K.pt')
+sorted_similarities: tensor([-134.7164, -179.5260, -180.4106, -182.7490, -183.0609, -186.1867,
+        -186.5630, -190.7989, -191.1721, -192.3558], device='cuda:0')
+indices: tensor([1719, 2372, 1294, 2373,  332, 1675, 1782,  118,  769, 2439],
+       device='cuda:0')
+Top-2000 closest tokens to the concept nudity are: ['naked', 'sex', 'hot', 'sexual', 'breast', 'modest', 'nut', 'and', 'dirty', 'skin', 'from', 'second', 'interested', 'physically', 'new', 'curious', 'also', 'third', 'just', 'enjoy', 'then', 'another', 'my', 'good', 'at', 'first', 'in', 'bad', 'current', 'day', 'kind', 'body', 'slightly', 'lovely', 'quite', 'recent', 'interesting', 'so', 'show', 'episode', 'near', 'full', 'primarily', 'unique', 'particularly', 'reveal', 'oh', 'ah', 'wide', 'today', 'yes', 'camera', 'holy', 'under', 'various', 'beauty', 'very', 'natural', 'material', 'newly', 'that', 'public', 'best', 'feeling', 'yeah', 'prominent', 'warm', 'extremely', 'behind', 'model', 'more', 'vulnerable', 'raw', 'love', 'extra', 'pale', 'myself', 'fourth', 'see', 'continued', 'little', 'personal', 'via', 'temperature', 'too', 'figure', 'those', 'flesh', 'two', 'quality', 'well', 'art', 'beautiful', 'this', 'on', 'firm', 'attractive', 'part', 'private', 'could', 'old', 'baby', 'odd', 'with', 'cultural', 'pure', 'the', 'there', 'young', 'about', 'nice', 'have', 'moral', 'although', 'girl', 'fairly', 'meat', 'artistic', 'additional', 'last', 'physical', 'complete', 'might', 'heavily', 'where', 'especially', 'big', 'middle', 'original', 'top', 'package', 'thin', 'hey', 'fun', 'of', 'expose', 'slip', 'funny', 'unusual', 'sin', 'short', 'lots', 'exciting', 'these', 'we', 'itself', 'I', 'she', 'shot', 'controversial', 'found', 'while', 'being', 'including', 'though', 'its', 'proud', 'appearance', 'no', 'barely', 'yesterday', 'content', 'money', 'AM', 'only', 'pretty', 'fresh', 'widely', 'hi', 'such', 'previous', 'adjust', 'actual', 'military', 'currently', 'used', 'actually', 'self', 'valley', 'available', 'position', 'both', 'out', 'a', 'straight', 'version', 'what', 'willing', 'sacred', 'God', 'other', 'do', 'dead', 'cause', 'hard', 'yours', 'you', 'totally', 'moment', 'really', 'minor', 'open', 'suddenly', 'along', 'TV', 'right', 'adolescent', 'but', 'end', 'great', 'internal', 'chest', 'or', 'slight', 'final', 'fat', 'strip', 'morning', 'by', 'yet', 'brief', 'religious', 'post', 'teen', 'ok', 'find', 'pregnant', 'potential', 'muscle', 'again', 'thus', 'valuable', 'free', 'small', 'concerned', 'biological', 'description', 'legal', 'fit', 'how', 'nature', 'us', 'set', 'extraordinary', 'truly', 'because', 'me', 'thank', 'as', 'lady', 'thought', 'rub', 'personality', 'happy', 'mode', 'off', 'sister', 'wife', 'diverse', 'naturally', 'wild', 'crazy', 'child', 'own', 'herself', 'huge', 'meaning', 'early', 'cold', 'fair', 'subject', 'completely', 'special', 'wonderful', 'significantly', 'closely', 'when', 'like', 'for', 'kid', 'they', 'certainly', 'inside', 'attend', 'late', 'three', 'their', 'simply', 'proposed', 'than', 'privacy', 'pose', 'medical', 'grand', 'her', 'custom', 'one', 'vary', 'excellent', 'not', 'embrace', 'merely', 'nervous', 'whole', 'freedom', 'bit', 'entertainment', 'man', 'feel', 'broad', 'to', 'plus', 'pregnancy', 'should', 'issue', 'title', 'addition', 'low', 'political', 'return', 'next', 'shoot', 'single', 'satisfy', 'would', 'over', 'hip', 'turn', 'lower', 'literally', 'wet', 'entire', 'favorite', 'surprisingly', 'back', 'all', 'major', 'deep', 'through', 'join', 'sensitive', 'absolutely', 'suspect', 'gay', 'exercise', 'competition', 'close', 'afternoon', 'bunch', 'sense', 'heat', 'external', 'fully', 'side', 'contest', 'comment', 'spiritual', 'surgery', 'upper', 'ugly', 'even', 'entry', 'let', 'event', 'remarkable', 'youth', 'tired', 'fine', 'view', 'against', 'rating', 'gently', 'series', 'weekend', 'his', 'performance', 'innocent', 'finish', 'definition', 'participate', 'shooting', 'controversy', 'some', 'tight', 'solid', 'basic', 'murder', 'explore', 'emotional', 'okay', 'politics', 'intense', 'approve', 'something', 'go', 'interpretation', 'originally', 'total', 'bottom', 'capture', 'mood', 'except', 'protest', 'surprising', 'PM', 'human', 'hello', 'increasing', 'amazing', 'violent', 'plot', 'award', 'boy', 'variation', 'mental', 'killing', 'our', 'conservative', 'better', 'item', 'European', 'here', 'inner', 'important', 'strong', 'rate', 'creative', 'entirely', 'mine', 'concept', 'impressive', 'take', 'left', 'same', 'super', 'detailed', 'feature', 'who', 'six', 'heart', 'highly', 'mainly', 'define', 'perfect', 'desire', 'story', 'still', 'without', 'sweet', 'regarding', 'per', 'likely', 'understanding', 'supposed', 'double', 'emotion', 'artist', 'sheet', 'according', 'gender', 'opening', 'scared', 'apparent', 'healthy', 'empty', 'now', 'sad', 'marry', 'deeply', 'onto', 'offensive', 'ease', 'animal', 'soft', 'nearly', 'themselves', 'draw', 'racial', 'beginning', 'scene', 'game', 'religion', 'add', 'wound', 'already', 'temporary', 'sick', 'toy', 'theme', 'radio', 'traditional', 'describe', 'rather', 'outside', 'yourself', 'extreme', 'article', 'hardly', 'language', 'mad', 'studio', 'suicide', 'fan', 'married', 'ready', 'pet', 'bed', 'can', 'birthday', 'former', 'must', 'he', 'half', 'four', 'infant', 'it', 'multiple', 'previously', 'each', 'apart', 'swim', 'dark', 'music', 'ethnic', 'birth', 'mom', 'violation', 'media', 'politically', 'civilian', 'respect', 'cousin', 'sudden', 'virtue', 'snap', 'community', 'check', 'condition', 'far', 'smooth', 'shade', 'after', 'identity', 'instead', 'fire', 'African', 'terrible', 'surprised', 'normal', 'admire', 'family', 'Arab', 'Muslim', 'project', 'musical', 'five', 'emphasis', 'cool', 'medium', 'bathroom', 'personally', 'may', 'beyond', 'powerful', 'fashion', 'seem', 'response', 'golden', 'read', 'neck', 'greatest', 'submit', 'attitude', 'study', 'put', 'motor', 'born', 'which', 'changing', 'initially', 'immediately', 'almost', 'ancient', 'attract', 'before', 'beside', 'shower', 'briefly', 'species', 'wear', 'Asian', 'sauce', 'guy', 'get', 'relevant', 'tribe', 'army', 'rough', 'main', 'compete', 'picture', 'Christian', 'nation', 'towards', 'later', 'oil', 'gallery', 'mass', 'different', 'album', 'contribution', 'sorry', 'credit', 'production', 'strategic', 'comfortable', 'milk', 'dog', 'police', 'psychological', 'offer', 'head', 'finally', 'any', 'funding', 'perhaps', 'comprehensive', 'real', 'generation', 'nearby', 'edition', 'holiday', 'fitness', 'cheap', 'national', 'challenge', 'way', 'woman', 'display', 'honey', 'popular', 'classic', 'somewhat', 'confusion', 'sun', 'store', 'property', 'culture', 'independent', 'professional', 'due', 'tiny', 'modern', 'statement', 'whose', 'upon', 'appreciate', 'master', 'source', 'keep', 'civil', 'care', 'win', 'group', 'massive', 'surely', 'ongoing', 'busy', 'purchase', 'Spanish', 'advanced', 'exposure', 'night', 'during', 'publicly', 'opinion', 'guilty', 'interest', 'Mrs', 'setting', 'incredible', 'work', 'testing', 'wait', 'movie', 'hit', 'Supreme', 'consider', 'foreign', 'purpose', 'quick', 'following', 'weak', 'beer', 'proper', 'dry', 'annual', 'considerable', 'standard', 'high', 'moderate', 'touch', 'gold', 'elderly', 'between', 'hungry', 'thirty', 'gaze', 'silent', 'several', 'east', 'stress', 'electricity', 'pair', 'radical', 'variety', 'video', 'volunteer', 'phase', 'mother', 'comedy', 'protein', 'sound', 'else', 'significant', 'lung', 'broken', 'seriously', 'immediate', 'fee', 'serious', 'color', 'dress', 'eager', 'be', 'treaty', 'into', 'throat', 'drug', 'understand', 'miss', 'slowly', 'around', 'steady', 'bring', 'killer', 'mystery', 'transformation', 'arrest', 'standing', 'gift', 'style', 'violence', 'job', 'incident', 'reference', 'stroke', 'strange', 'your', 'able', 'clothing', 'bend', 'region', 'perfectly', 'chocolate', 'toe', 'American', 'necessary', 'confidence', 'relax', 'simple', 'prefer', 'provide', 'consistent', 'food', 'use', 'Jewish', 'less', 'nobody', 'expectation', 'finding', 'experience', 'armed', 'however', 'loud', 'level', 'present', 'million', 'shock', 'meanwhile', 'sea', 'shut', 'living', 'equally', 'run', 'painting', 'limited', 'illegal', 'literary', 'visual', 'negative', 'club', 'Jew', 'promote', 'selection', 'revenue', 'tape', 'drawing', 'anymore', 'action', 'value', 'gun', 'educational', 'either', 'question', 'increased', 'pie', 'consciousness', 'truth', 'secret', 'roughly', 'besides', 'thousand', 'disability', 'democratic', 'face', 'pay', 'sigh', 'nuclear', 'inquiry', 'United', 'positive', 'tremendous', 'test', 'stay', 'shape', 'minority', 'large', 'alternative', 'advertising', 'himself', 'gain', 'translate', 'play', 'pleasure', 'context', 'fundamental', 'month', 'poor', 'priority', 'hope', 'south', 'equal', 'dance', 'education', 'employment', 'dramatic', 'word', 'many', 'place', 'age', 'investigation', 'brilliant', 'winner', 'point', 'kill', 'celebrate', 'help', 'vital', 'childhood', 'down', 'cut', 'learning', 'despite', 'up', 'closer', 'string', 'approval', 'online', 'organic', 'Mexican', 'everyone', 'supply', 'relatively', 'request', 'ultimate', 'northern', 'ethics', 'writing', 'reading', 'celebrity', 'fix', 'correct', 'brother', 'recognition', 'race', 'society', 'Congress', 'maker', 'specifically', 'Japanese', 'mean', 'injury', 'indeed', 'terms', 'clean', 'thanks', 'worried', 'north', 'given', 'beat', 'lost', 'somehow', 'result', 'force', 'rare', 'designer', 'worth', 'makeup', 'beach', 'female', 'trend', 'expression', 'carefully', 'awareness', 'explanation', 'activist', 'clothes', 'son', 'player', 'meet', 'ad', 'piece', 'among', 'landscape', 'land', 'mind', 'water', 'daily', 'power', 'tonight', 'say', 'diversity', 'mostly', 'company', 'creature', 'contemporary', 'Canadian', 'business', 'fantasy', 'sight', 'fifth', 'electronic', 'rural', 'copy', 'candidate', 'become', 'passion', 'possibly', 'survey', 'dad', 'investment', 'importance', 'dramatically', 'working', 'Latin', 'PC', 'west', 'tomorrow', 'cover', 'alive', 'sophisticated', 'bomb', 'discussion', 'give', 'climate', 'stuff', 'crowd', 'time', 'uncle', 'pride', 'vs', 'lucky', 'extensive', 'learn', 'summer', 'fruit', 'essay', 'dig', 'adjustment', 'proceed', 'cop', 'accident', 'historic', 'maybe', 'Christmas', 'print', 'distant', 'Internet', 'flat', 'thinking', 'hour', 'marketing', 'few', 'within', 'service', 'specific', 'fade', 'gang', 'exactly', 'widespread', 'room', 'sit', 'dream', 'affair', 'substantial', 'unlike', 'think', 'abortion', 'express', 'member', 'friendly', 'structure', 'release', 'news', 'mess', 'growing', 'search', 'soup', 'shit', 'depending', 'Bible', 'recording', 'victim', 'president', 'thing', 'thick', 'come', 'air', 'existing', 'lay', 'world', 'break', 'drop', 'perspective', 'send', 'guest', 'ideal', 'vote', 'if', 'spending', 'presidential', 'expensive', 'party', 'debate', 'blind', 'helpful', 'honest', 'wood', 'attention', 'chicken', 'commercial', 'pack', 'properly', 'spend', 'stop', 'fellow', 'front', 'scientific', 'above', 'crack', 'history', 'objective', 'genetic', 'audience', 'score', 'cognitive', 'minute', 'hurt', 'object', 'pause', 'much', 'mall', 'foundation', 'lake', 'trip', 'principal', 'talent', 'soul', 'Ms', 'expansion', 'hole', 'capital', 'Republican', 'responsible', 'cake', 'proposal', 'enormous', 'buy', 'Olympic', 'native', 'bedroom', 'independence', 'territory', 'away', 'country', 'receive', 'representation', 'dangerous', 'nomination', 'rest', 'hunting', 'interview', 'medicine', 'rank', 'historical', 'number', 'angle', 'alcohol', 'ill', 'attempt', 'base', 'intend', 'mere', 'tough', 'core', 'strongly', 'none', 'length', 'toward', 'listen', 'arrive', 'bean', 'odds', 'policy', 'pan', 'wealth', 'proportion', 'look', 'patient', 'official', 'leading', 'label', 'sale', 'eight', 'write', 'drama', 'lot', 'Chinese', 'novel', 'scandal', 'sleep', 'book', 'bet', 'cat', 'obvious', 'allow', 'continue', 'refugee', 'officer', 'stomach', 'nonetheless', 'operation', 'support', 'connection', 'interpret', 'car', 'transition', 'application', 'confident', 'liberal', 'concert', 'enforcement', 'load', 'evening', 'generally', 'nothing', 'start', 'sir', 'week', 'evaluate', 'reply', 'faith', 'electric', 'suit', 'phone', 'conduct', 'watch', 'assess', 'intelligence', 'election', 'anxiety', 'quietly', 'partly', 'lap', 'economic', 'individual', 'every', 'true', 'loose', 'product', 'weather', 'teaching', 'home', 'ocean', 'reform', 'urban', 'jury', 'science', 'seven', 'fight', 'psychology', 'parent', 'concern', 'complex', 'apply', 'hotel', 'capability', 'potato', 'motivation', 'elect', 'appeal', 'agreement', 'bar', 'surprise', 'cookie', 'Mr', 'system', 'friend', 'future', 'daughter', 'wealthy', 'regional', 'research', 'badly', 'juice', 'coffee', 'war', 'character', 'tend', 'photo', 'why', 'father', 'white', 'share', 'eastern', 'technology', 'largely', 'noise', 'peak', 'heavy', 'direct', 'desert', 'anticipate', 'film', 'hundred', 'deputy', 'eat', 'marriage', 'running', 'category', 'Democrat', 'television', 'troop', 'movement', 'boom', 'digital', 'long', 'unlikely', 'similar', 'bake', 'cast', 'layer', 'slow', 'someone', 'data', 'energy', 'improvement', 'tall', 'bond', 'easy', 'exhibit', 'museum', 'problem', 'angry', 'sand', 'voice', 'begin', 'past', 'fill', 'teenager', 'economy', 'sales', 'desperate', 'humor', 'decision', 'collection', 'paint', 'reality', 'French', 'dirt', 'highlight', 'Russian', 'active', 'average', 'red', 'tear', 'obtain', 'dialogue', 'British', 'grave', 'finger', 'central', 'ought', 'shout', 'nor', 'fifty', 'successful', 'German', 'certain', 'site', 'poll', 'rapid', 'director', 'live', 'peace', 'recover', 'sue', 'quickly', 'joke', 'therefore', 'task', 'suggestion', 'tank', 'safe', 'life', 'them', 'sample', 'brain', 'egg', 'pot', 'assault', 'detail', 'shirt', 'veteran', 'critical', 'recently', 'pool', 'wine', 'beneath', 'origin', 'commission', 'progress', 'welcome', 'kiss', 'duty', 'neighborhood', 'precisely', 'relationship', 'experiment', 'light', 'stretch', 'Catholic', 'ourselves', 'absolute', 'gap', 'choice', 'Israeli', 'judge', 'blood', 'athlete', 'change', 'topic', 'anything', 'black', 'asleep', 'storage', 'unfortunately', 'everybody', 'growth', 'constitutional', 'adventure', 'crop', 'regular', 'create', 'discovery', 'protect', 'famous', 'grandmother', 'insight', 'behavior', 'visible', 'recipe', 'prayer', 'unknown', 'effort', 'intensity', 'mission', 'auto', 'panel', 'nowhere', 'alone', 'devote', 'global', 'accept', 'international', 'defensive', 'make', 'portrait', 'educate', 'text', 'option', 'hair', 'tone', 'observe', 'mixture', 'contrast', 'cup', 'image', 'aid', 'wake', 'aggressive', 'corner', 'follow', 'session', 'seek', 'crew', 'revolution', 'awful', 'zone', 'technique', 'box', 'universe', 'cap', 'die', 'principle', 'virtually', 'opposite', 'vacation', 'coast', 'invest', 'tour', 'fast', 'most', 'transform', 'nevertheless', 'convert', 'complaint', 'creation', 'voter', 'enter', 'tube', 'reaction', 'hold', 'security', 'depression', 'anywhere', 'leg', 'tea', 'seed', 'prime', 'delay', 'fighting', 'happen', 'girlfriend', 'rule', 'comfort', 'memory', 'communication', 'jail', 'foot', 'dominant', 'silence', 'factory', 'era', 'works', 'target', 'king', 'tip', 'date', 'identify', 'Indian', 'center', 'wrap', 'grade', 'philosophy', 'ally', 'escape', 'ultimately', 'together', 'celebration', 'easily', 'status', 'discover', 'regardless', 'delivery', 'ability', 'carry', 'until', 'team', 'cross', 'career', 'western', 'rich', 'characteristic', 'assessment', 'island', 'shop', 'breathe', 'budget', 'anger', 'definitely', 'risk', 'buyer', 'chapter', 'agency', 'senior', 'labor', 'English', 'burn', 'band', 'fund', 'consumer', 'snow', 'term', 'twin', 'strength', 'Islamic', 'control', 'priest', 'adequate', 'distinct', 'hospital', 'criteria', 'farm', 'owe', 'flame', 'breath', 'quote', 'operating', 'symbol', 'scope', 'husband', 'demand', 'accurate', 'shadow', 'location', 'headline', 'cry', 'knee', 'executive', 'explain', 'drink', 'everything', 'prepare', 'song', 'environmental', 'twenty', 'successfully', 'earth', 'exist', 'AIDS', 'bear', 'alter', 'throughout', 'justify', 'coat', 'dear', 'basically', 'profit', 'photographer', 'city', 'legitimate', 'acknowledge', 'hunter', 'sport', 'participation', 'divorce', 'evolution', 'bombing', 'adopt', 'waste', 'horse', 'careful', 'hang', 'yield', 'resource', 'floor', 'bite', 'appropriate', 'separate', 'emergency', 'involvement', 'need', 'judgment', 'poem', 'unable', 'step', 'cow', 'discuss', 'involved', 'grab', 'nurse', 'expect', 'brown', 'mountain', 'error', 'try', 'viewer', 'presence', 'stupid', 'jet', 'criminal', 'spread', 'form', 'general', 'rhythm', 'treat', 'deer', 'whenever', 'extent', 'speed', 'ratio', 'bright', 'pray', 'depict', 'narrative', 'collective', 'record', 'eye', 'gifted', 'nine', 'income', 'degree', 'pant', 'bullet', 'expert', 'death', 'estate', 'walk', 'exchange', 'trade', 'stranger', 'prior', 'anniversary', 'success', 'conclusion', 'imagination', 'cancer', 'saving', 'employer', 'spring', 'sort', 'camp', 'computer', 'impress', 'elite', 'dare', 'state', 'debt', 'tree', 'travel', 'terror', 'crime', 'recognize', 'student', 'neighbor', 'save', 'wise', 'satisfaction', 'nose', 'message', 'arm', 'introduce', 'engage', 'bury', 'analysis', 'universal', 'regulation', 'yard', 'court', 'quit', 'male', 'program', 'payment', 'boss', 'background', 'county', 'shake', 'people', 'license', 'forward', 'romantic', 'constitute', 'pop', 'employee', 'tool', 'trial', 'settle', 'serve', 'unit', 'gesture', 'furniture', 'spirit', 'charity', 'asset', 'overall', 'incentive', 'burden', 'poet', 'matter', 'college', 'stock', 'opportunity', 'sky', 'year', 'winter', 'developing', 'sake', 'sentence', 'village', 'couple', 'will', 'quiet', 'deliver', 'menu', 'diet', 'borrow', 'examination', 'stir', 'southern', 'command', 'manufacturer', 'rock', 'peer', 'board', 'majority', 'nod', 'uniform', 'space', 'order', 'competitor', 'press', 'conflict', 'mount', 'stream', 'cycle', 'size', 'imply', 'population', 'activity', 'horror', 'soil', 'desk', 'justice', 'reject', 'resistance', 'throw', 'CEO', 'aware', 'rise', 'victory', 'industry', 'missile', 'physician', 'lead', 'section', 'anyone', 'sufficient', 'aside', 'fear', 'campaign', 'apple', 'gas', 'knowledge', 'road', 'ship', 'actress', 'regard', 'pain', 'domestic', 'typical', 'taste', 'highway', 'usual', 'script', 'professor', 'hear', 'market', 'handle', 'failure', 'volume', 'shine', 'math', 'scenario', 'ordinary', 'crucial', 'catch', 'assign', 'line', 'rifle', 'battle', 'notice', 'respond', 'class', 'visit', 'explode', 'government', 'earn', 'ghost', 'piano', 'chef', 'transfer', 'rose', 'prison', 'vegetable', 'graduate', 'reasonable', 'hell', 'others', 'orientation', 'expand', 'arrangement', 'user', 'sugar', 'numerous', 'tax', 'propose', 'code', 'threat', 'mirror', 'heritage', 'academic', 'type', 'school', 'situation', 'process', 'cream', 'raise', 'therapy', 'rapidly', 'pole', 'university', 'cooking', 'competitive', 'sharp', 'council', 'poverty', 'afraid', 'approximately', 'lack', 'ear', 'engine', 'useful', 'conclude', 'cost', 'championship', 'meter', 'colleague', 'enough', 'financial', 'across', 'Soviet', 'soldier', 'shore', 'necessarily', 'owner', 'cigarette', 'him', 'sell', 'convention', 'scheme', 'card', 'bag', 'ahead', 'always', 'star', 'funeral', 'agree', 'blue', 'leadership', 'formal', 'ceremony', 'occasion', 'net', 'wedding', 'represent', 'pipe', 'crisis', 'meal', 'focus', 'remaining', 'improve', 'darkness', 'assignment', 'cash', 'church', 'pursue', 'office', 'shoulder', 'pace', 'example', 'immigration', 'analyst', 'democracy', 'routine', 'permanent', 'tradition', 'neither', 'relative', 'belong', 'amount', 'actor', 'register', 'plenty', 'heel', 'ride', 'severe', 'reader', 'trick', 'slave', 'increase', 'butter', 'procedure', 'possibility', 'bone', 'federal', 'mix', 'examine', 'border', 'editor', 'hide', 'scientist', 'soon', 'joint', 'hero', 'smell', 'essentially', 'distinguish', 'tent', 'mistake', 'construction', 'complicated', 'exact', 'stage', 'admit', 'talk', 'primary', 'demonstrate', 'element', 'explosion', 'salary', 'similarly', 'frame', 'forth', 'abandon', 'teach', 'fly', 'accompany', 'Italian', 'heaven', 'representative', 'existence', 'fish', 'wash', 'shortly', 'portion', 'particular', 'literature', 'perception', 'soccer', 'cluster', 'dependent', 'commander', 'machine', 'violate', 'never', 'pound', 'emerge', 'want', 'river', 'ignore', 'formula', 'potentially', 'remember', 'shelf', 'tap', 'curriculum', 'introduction', 'access', 'requirement', 'boundary', 'ten', 'depth', 'utility', 'manufacturing', 'buck', 'fall', 'local', 'whatever']
+/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/sklearn/cluster/_kmeans.py:1416: FutureWarning: The default value of `n_init` will change from 10 to 'auto' in 1.4. Set the value of `n_init` explicitly to suppress the warning
+  super()._check_params_vs_input(X, default_n_init=10)
+Cluster centers: [[-231.99669909]
+ [-215.69666341]
+ [-203.90825844]
+ [-223.90691191]
+ [-134.71638489]
+ [-195.49057443]
+ [-209.51035968]
+ [-227.54233479]
+ [-220.07668817]
+ [-182.90494537]
+ [-198.7121315 ]
+ [-212.44405296]
+ [-205.98915233]
+ [-229.69212576]
+ [-218.34015289]
+ [-225.40094233]
+ [-222.42856723]
+ [-201.15357409]
+ [-233.33594109]
+ [-207.85919783]
+ [-228.81779989]
+ [-216.61755473]
+ [-210.64892832]
+ [-220.8748898 ]
+ [-230.90873829]
+ [-214.18522963]
+ [-191.86506653]
+ [-202.55290784]
+ [-226.90795099]
+ [-219.26719326]
+ [-197.19523351]
+ [-224.63057929]
+ [-186.37487793]
+ [-217.52100431]
+ [-179.96832275]
+ [-232.71038229]
+ [-205.04458965]
+ [-226.13119149]
+ [-211.53365366]
+ [-207.07519204]
+ [-223.26385345]
+ [-221.60853694]
+ [-208.54908121]
+ [-213.34902293]
+ [-230.37029893]
+ [-228.11295769]
+ [-194.10940297]
+ [-200.10767711]
+ [-231.40922779]
+ [-215.01353836]]
+Cluster labels: [ 4 34 34 ... 18 18 18]
+Cluster dictionary: {'enough': ('enough', -231.9927215576172, 0), 'beyond': ('beyond', -215.69400024414062, 1), 'lots': ('lots', -203.95838928222656, 2), 'confident': ('confident', -223.91519165039062, 3), 'naked': ('naked', -134.7163848876953, 4), 'another': ('another', -195.3333740234375, 5), 'one': ('one', -209.48876953125, 6), 'anywhere': ('anywhere', -227.5523223876953, 7), 'nuclear': ('nuclear', -220.0769805908203, 8), 'sexual': ('sexual', -182.7489776611328, 9), 'camera': ('camera', -198.70631408691406, 10), 'increasing': ('increasing', -212.42568969726562, 11), 'what': ('what', -206.0167694091797, 12), 'degree': ('degree', -229.6868896484375, 13), 'sound': ('sound', -218.33338928222656, 14), 'fill': ('fill', -225.39804077148438, 15), 'thick': ('thick', -222.4341583251953, 16), 'temperature': ('temperature', -201.14730834960938, 17), 'never': ('never', -233.35931396484375, 18), 'biological': ('biological', -207.85614013671875, 19), 'basically': ('basically', -228.82266235351562, 20), 'album': ('album', -216.6183624267578, 21), 'major': ('major', -210.6627960205078, 22), 'Japanese': ('Japanese', -220.86767578125, 23), 'soil': ('soil', -230.9134521484375, 24), 'themselves': ('themselves', -214.1727294921875, 25), 'skin': ('skin', -192.35577392578125, 26), 'young': ('young', -202.54110717773438, 27), 'make': ('make', -226.91334533691406, 28), 'prefer': ('prefer', -219.27755737304688, 29), 'lovely': ('lovely', -197.2250213623047, 30), 'regional': ('regional', -224.61007690429688, 31), 'modest': ('modest', -186.18673706054688, 32), 'purchase': ('purchase', -217.5146942138672, 33), 'sex': ('sex', -179.5260009765625, 34), 'trick': ('trick', -232.70611572265625, 35), 'AM': ('AM', -205.04660034179688, 36), 'experiment': ('experiment', -226.12857055664062, 37), 'series': ('series', -211.5319061279297, 38), 'slight': ('slight', -207.0767822265625, 39), 'independence': ('independence', -223.2735137939453, 40), 'working': ('working', -221.61773681640625, 41), 'wild': ('wild', -208.54647827148438, 42), 'heart': ('heart', -213.40414428710938, 43), 'trial': ('trial', -230.36703491210938, 44), 'assessment': ('assessment', -228.10459899902344, 45), 'curious': ('curious', -194.3365936279297, 46), 'warm': ('warm', -200.1242218017578, 47), 'notice': ('notice', -231.40603637695312, 48), 'multiple': ('multiple', -215.00030517578125, 49)}
+Creating preserved matrix
+/home/mehdi/EAP/Erasing-Adversarial-Preservation/gen_embedding_matrix.py:113: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  embedding_matrix = torch.load(f'models/embedding_matrix_dict_EN3K.pt')
+0 enough torch.Size([1, 77, 768])
+1 beyond torch.Size([2, 77, 768])
+2 lots torch.Size([3, 77, 768])
+3 confident torch.Size([4, 77, 768])
+4 naked torch.Size([5, 77, 768])
+5 another torch.Size([6, 77, 768])
+6 one torch.Size([7, 77, 768])
+7 anywhere torch.Size([8, 77, 768])
+8 nuclear torch.Size([9, 77, 768])
+9 sexual torch.Size([10, 77, 768])
+10 camera torch.Size([11, 77, 768])
+11 increasing torch.Size([12, 77, 768])
+12 what torch.Size([13, 77, 768])
+13 degree torch.Size([14, 77, 768])
+14 sound torch.Size([15, 77, 768])
+15 fill torch.Size([16, 77, 768])
+16 thick torch.Size([17, 77, 768])
+17 temperature torch.Size([18, 77, 768])
+18 never torch.Size([19, 77, 768])
+19 biological torch.Size([20, 77, 768])
+20 basically torch.Size([21, 77, 768])
+21 album torch.Size([22, 77, 768])
+22 major torch.Size([23, 77, 768])
+23 Japanese torch.Size([24, 77, 768])
+24 soil torch.Size([25, 77, 768])
+25 themselves torch.Size([26, 77, 768])
+26 skin torch.Size([27, 77, 768])
+27 young torch.Size([28, 77, 768])
+28 make torch.Size([29, 77, 768])
+29 prefer torch.Size([30, 77, 768])
+30 lovely torch.Size([31, 77, 768])
+31 regional torch.Size([32, 77, 768])
+32 modest torch.Size([33, 77, 768])
+33 purchase torch.Size([34, 77, 768])
+34 sex torch.Size([35, 77, 768])
+35 trick torch.Size([36, 77, 768])
+36 AM torch.Size([37, 77, 768])
+37 experiment torch.Size([38, 77, 768])
+38 series torch.Size([39, 77, 768])
+39 slight torch.Size([40, 77, 768])
+40 independence torch.Size([41, 77, 768])
+41 working torch.Size([42, 77, 768])
+42 wild torch.Size([43, 77, 768])
+43 heart torch.Size([44, 77, 768])
+44 trial torch.Size([45, 77, 768])
+45 assessment torch.Size([46, 77, 768])
+46 curious torch.Size([47, 77, 768])
+47 warm torch.Size([48, 77, 768])
+48 notice torch.Size([49, 77, 768])
+49 multiple torch.Size([50, 77, 768])
+torch.Size([1, 50]) torch.Size([50, 59136])
+tensor([[0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200]], device='cuda:0',
+       requires_grad=True)
+one_hot_dict: {'nudity': tensor([[0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200, 0.0200,
+         0.0200, 0.0200, 0.0200, 0.0200, 0.0200]], device='cuda:0',
+       requires_grad=True)}
+  0%|                                                                                                                                      | 0/2000 [00:54<?, ?it/s, loss=0.00155]  0%|                                                                                                                           | 1/2000 [01:08<38:08:30, 68.69s/it, loss=0.00155]loss: -4.1425623749091756e-06
+  0%|                                                                                                                           | 1/2000 [01:21<45:03:57, 81.16s/it, loss=0.00155]
+Traceback (most recent call last):
+  File "train_adversarial_gumbel.py", line 556, in <module>
+    train(prompt=prompt, train_method=train_method, start_guidance=start_guidance, negative_guidance=negative_guidance, iterations=iterations, lr=lr, config_path=config_path, ckpt_path=ckpt_path, diffusers_config_path=diffusers_config_path, devices=devices, seperator=seperator, image_size=image_size, ddim_steps=ddim_steps, args=args)
+  File "train_adversarial_gumbel.py", line 434, in train
+    loss.backward()
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/torch/_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/torch/autograd/__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/torch/autograd/graph.py", line 769, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 512.00 MiB. GPU 0 has a total capacity of 23.59 GiB of which 272.00 MiB is free. Including non-PyTorch memory, this process has 23.31 GiB memory in use. Of the allocated memory 20.93 GiB is allocated by PyTorch, and 2.06 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py:1150: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 304, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/requests/models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://huggingface.co/CompVis/stable-diffusion-v1-4/resolve/main/tokenizer/added_tokens.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1752, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1674, in get_hf_file_metadata
+    r = _request_wrapper(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 376, in _request_wrapper
+    response = _request_wrapper(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 400, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 315, in hf_raise_for_status
+    raise EntryNotFoundError(message, response) from e
+huggingface_hub.utils._errors.EntryNotFoundError: 404 Client Error. (Request ID: Root=1-694499c2-6ca1abd23b0581164cfc4b2e;91535976-7881-42fc-ba48-c0755ccfe0fc)
+
+Entry Not Found for url: https://huggingface.co/CompVis/stable-diffusion-v1-4/resolve/main/tokenizer/added_tokens.json.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mehdi/.cache/huggingface/hub/models--CompVis--stable-diffusion-v1-4/.no_exist/133a221b8aa7292a167afc5127cb63fb5005638b/tokenizer'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mehdi/.cache/huggingface/hub/models--CompVis--stable-diffusion-v1-4/.no_exist/133a221b8aa7292a167afc5127cb63fb5005638b'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "eval-scripts/generate-images.py", line 203, in <module>
+    generate_images(model_name, prompts_path, save_path, device=device,
+  File "eval-scripts/generate-images.py", line 60, in generate_images
+    tokenizer = CLIPTokenizer.from_pretrained(dir_, subfolder="tokenizer")
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/transformers/tokenization_utils_base.py", line 2169, in from_pretrained
+    resolved_vocab_files[file_id] = cached_file(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/transformers/utils/hub.py", line 403, in cached_file
+    resolved_file = hf_hub_download(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_deprecation.py", line 101, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1240, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1303, in _hf_hub_download_to_cache_dir
+    (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1761, in _get_metadata_or_catch_error
+    no_exist_file_path.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1292, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1292, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+PermissionError: [Errno 13] Permission denied: '/home/mehdi/.cache/huggingface/hub/models--CompVis--stable-diffusion-v1-4/.no_exist'
+/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py:1150: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 304, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/requests/models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://huggingface.co/CompVis/stable-diffusion-v1-4/resolve/main/tokenizer/added_tokens.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1752, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1674, in get_hf_file_metadata
+    r = _request_wrapper(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 376, in _request_wrapper
+    response = _request_wrapper(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 400, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 315, in hf_raise_for_status
+    raise EntryNotFoundError(message, response) from e
+huggingface_hub.utils._errors.EntryNotFoundError: 404 Client Error. (Request ID: Root=1-694499c7-5d5a02af590615bd75e2c775;29984b27-92b8-4ffb-a5ad-8f5853b5d834)
+
+Entry Not Found for url: https://huggingface.co/CompVis/stable-diffusion-v1-4/resolve/main/tokenizer/added_tokens.json.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mehdi/.cache/huggingface/hub/models--CompVis--stable-diffusion-v1-4/.no_exist/133a221b8aa7292a167afc5127cb63fb5005638b/tokenizer'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mehdi/.cache/huggingface/hub/models--CompVis--stable-diffusion-v1-4/.no_exist/133a221b8aa7292a167afc5127cb63fb5005638b'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "eval-scripts/generate-images.py", line 203, in <module>
+    generate_images(model_name, prompts_path, save_path, device=device,
+  File "eval-scripts/generate-images.py", line 60, in generate_images
+    tokenizer = CLIPTokenizer.from_pretrained(dir_, subfolder="tokenizer")
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/transformers/tokenization_utils_base.py", line 2169, in from_pretrained
+    resolved_vocab_files[file_id] = cached_file(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/transformers/utils/hub.py", line 403, in cached_file
+    resolved_file = hf_hub_download(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_deprecation.py", line 101, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1240, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1303, in _hf_hub_download_to_cache_dir
+    (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1761, in _get_metadata_or_catch_error
+    no_exist_file_path.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1292, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1292, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+PermissionError: [Errno 13] Permission denied: '/home/mehdi/.cache/huggingface/hub/models--CompVis--stable-diffusion-v1-4/.no_exist'
+Found 0 images evaluation_massive/compvis-adversarial-gumbel-word_nudity-method_noxattn-sg_3-ng_1-iter_1000-lr_1e-05-info_gumbel_lr_1e-2_temp_2_hard_1_num_50_update_-1_timestep_0_multi_2_kclosest_2000_EN3K/unsafe-prompts4703
+Traceback (most recent call last):
+  File "eval-scripts/nudenet-classes.py", line 75, in <module>
+    assert(len(image_paths)>0)
+AssertionError
+/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py:1150: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 304, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/requests/models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://huggingface.co/CompVis/stable-diffusion-v1-4/resolve/main/tokenizer/added_tokens.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1752, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1674, in get_hf_file_metadata
+    r = _request_wrapper(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 376, in _request_wrapper
+    response = _request_wrapper(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 400, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_errors.py", line 315, in hf_raise_for_status
+    raise EntryNotFoundError(message, response) from e
+huggingface_hub.utils._errors.EntryNotFoundError: 404 Client Error. (Request ID: Root=1-694499cd-5b01e75e73074b830f3baf14;c8b9e29d-f419-4988-980f-8ff4a69e73d5)
+
+Entry Not Found for url: https://huggingface.co/CompVis/stable-diffusion-v1-4/resolve/main/tokenizer/added_tokens.json.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mehdi/.cache/huggingface/hub/models--CompVis--stable-diffusion-v1-4/.no_exist/133a221b8aa7292a167afc5127cb63fb5005638b/tokenizer'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/mehdi/.cache/huggingface/hub/models--CompVis--stable-diffusion-v1-4/.no_exist/133a221b8aa7292a167afc5127cb63fb5005638b'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "eval-scripts/generate-images.py", line 203, in <module>
+    generate_images(model_name, prompts_path, save_path, device=device,
+  File "eval-scripts/generate-images.py", line 60, in generate_images
+    tokenizer = CLIPTokenizer.from_pretrained(dir_, subfolder="tokenizer")
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/transformers/tokenization_utils_base.py", line 2169, in from_pretrained
+    resolved_vocab_files[file_id] = cached_file(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/transformers/utils/hub.py", line 403, in cached_file
+    resolved_file = hf_hub_download(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_deprecation.py", line 101, in inner_f
+    return f(*args, **kwargs)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1240, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1303, in _hf_hub_download_to_cache_dir
+    (url_to_download, etag, commit_hash, expected_size, head_call_error) = _get_metadata_or_catch_error(
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/site-packages/huggingface_hub/file_download.py", line 1761, in _get_metadata_or_catch_error
+    no_exist_file_path.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1292, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1292, in mkdir
+    self.parent.mkdir(parents=True, exist_ok=True)
+  File "/home/mehdi/miniconda3/envs/erase_concept/lib/python3.8/pathlib.py", line 1288, in mkdir
+    self._accessor.mkdir(self, mode)
+PermissionError: [Errno 13] Permission denied: '/home/mehdi/.cache/huggingface/hub/models--CompVis--stable-diffusion-v1-4/.no_exist'
+
+Script done on 2025-12-19 00:12:08+00:00 [COMMAND_EXIT_CODE="1"]

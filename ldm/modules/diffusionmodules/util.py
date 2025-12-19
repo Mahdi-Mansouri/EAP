@@ -12,6 +12,7 @@ import os
 import math
 import torch
 import torch.nn as nn
+import torch.nn.functional as F  # Added F for group_norm
 import numpy as np
 from einops import repeat
 
@@ -213,7 +214,16 @@ class SiLU(nn.Module):
 
 class GroupNorm32(nn.GroupNorm):
     def forward(self, x):
-        return super().forward(x.float()).type(x.dtype)
+        # FIX: Explicitly use F.group_norm and cast weights/bias to float
+        # This allows running the norm in fp32 even if the model params are fp16
+        return F.group_norm(
+            x.float(), 
+            self.num_groups, 
+            self.weight.float() if self.weight is not None else None, 
+            self.bias.float() if self.bias is not None else None, 
+            self.eps
+        ).type(x.dtype)
+
 
 def conv_nd(dims, *args, **kwargs):
     """

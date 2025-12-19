@@ -763,13 +763,16 @@ class UNetModel(nn.Module):
         ), "must specify y if and only if the model is class-conditional"
         hs = []
         t_emb = timestep_embedding(timesteps, self.model_channels, repeat_only=False)
+        # CHANGE: Cast t_emb to x.dtype to match model weights
+        t_emb = t_emb.type(x.dtype)
         emb = self.time_embed(t_emb)
 
         if self.num_classes is not None:
             assert y.shape == (x.shape[0],)
             emb = emb + self.label_emb(y)
 
-        h = x.type(self.dtype)
+        # CHANGE: Don't cast to self.dtype (which is float32), preserve input dtype (float16)
+        h = x
         for module in self.input_blocks:
             h = module(h, emb, context)
             hs.append(h)
@@ -798,13 +801,16 @@ class UNetModel(nn.Module):
         ), "must specify y if and only if the model is class-conditional"
         hs = []
         t_emb = timestep_embedding(timesteps, self.model_channels, repeat_only=False)
+        # CHANGE: Cast t_emb to x.dtype
+        t_emb = t_emb.type(x.dtype)
         emb = self.time_embed(t_emb)
 
         if self.num_classes is not None:
             assert y.shape == (x.shape[0],)
             emb = emb + self.label_emb(y)
 
-        h = x.type(self.dtype)
+        # CHANGE: Preserve input dtype
+        h = x
         for module in self.input_blocks:
             h = module(h, emb, context) 
             hs.append(h)
@@ -832,13 +838,16 @@ class UNetModel(nn.Module):
         ), "must specify y if and only if the model is class-conditional"
         hs = []
         t_emb = timestep_embedding(timesteps, self.model_channels, repeat_only=False)
+        # CHANGE: Cast t_emb to x.dtype
+        t_emb = t_emb.type(x.dtype)
         emb = self.time_embed(t_emb)
 
         if self.num_classes is not None:
             assert y.shape == (x.shape[0],)
             emb = emb + self.label_emb(y)
 
-        h = x.type(self.dtype)
+        # CHANGE: Preserve input dtype
+        h = x
         for module in self.input_blocks:
             h = module(h, emb, context, prompt=prompt) # CHANGE HERE
             hs.append(h)
@@ -866,13 +875,16 @@ class UNetModel(nn.Module):
         ), "must specify y if and only if the model is class-conditional"
         hs = []
         t_emb = timestep_embedding(timesteps, self.model_channels, repeat_only=False)
+        # CHANGE: Cast t_emb to x.dtype
+        t_emb = t_emb.type(x.dtype)
         emb = self.time_embed(t_emb)
 
         if self.num_classes is not None:
             assert y.shape == (x.shape[0],)
             emb = emb + self.label_emb(y)
 
-        h = x.type(self.dtype)
+        # CHANGE: Preserve input dtype
+        h = x
         for module in self.input_blocks:
             h = module(h, emb, context) # NOT USED
             hs.append(h)
@@ -1086,10 +1098,14 @@ class EncoderUNetModel(nn.Module):
         :param timesteps: a 1-D batch of timesteps.
         :return: an [N x K] Tensor of outputs.
         """
-        emb = self.time_embed(timestep_embedding(timesteps, self.model_channels))
+        t_emb = timestep_embedding(timesteps, self.model_channels)
+        # CHANGE: Cast t_emb to x.dtype
+        t_emb = t_emb.type(x.dtype)
+        emb = self.time_embed(t_emb)
 
         results = []
-        h = x.type(self.dtype)
+        # CHANGE: Preserve input dtype
+        h = x
         for module in self.input_blocks:
             h = module(h, emb)
             if self.pool.startswith("spatial"):
@@ -1102,4 +1118,3 @@ class EncoderUNetModel(nn.Module):
         else:
             h = h.type(x.dtype)
             return self.out(h)
-
